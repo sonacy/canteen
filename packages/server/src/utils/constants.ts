@@ -1,0 +1,6 @@
+export const SENDCLOUD_USER = 'sonacy_test_A7mR2Y'
+export const SENDCLOUD_KEY = 'G7MPDTDdW8UesRqO'
+export const SENDCLOUD_FROM = 'sonacy@gmail.com'
+export const CONFIRM_USER_PREFIX = 'confirm-user:'
+export const FORGOT_PASSWORD_PREFIX = 'confirm-user:'
+export const FRONTEND_HOST = 'http://localhost:3000'
