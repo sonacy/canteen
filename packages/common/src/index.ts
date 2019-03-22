@@ -1,1 +1,1 @@
-// start your code here
+export * from './modules/register'

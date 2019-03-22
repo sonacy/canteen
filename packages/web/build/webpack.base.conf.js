@@ -23,7 +23,11 @@ module.exports = {
     path: resolve(__dirname, '../dist/'),
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.d.ts']
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.d.ts'],
+    alias: {
+      components: resolve(__dirname, '../src/components'),
+      routes: resolve(__dirname, '../src/routes')
+    }
   },
   module: {
     rules: [{
