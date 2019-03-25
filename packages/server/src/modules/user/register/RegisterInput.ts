@@ -8,7 +8,7 @@ export default class RegisterInput {
 	@Field()
 	@Length(3, 255)
 	@IsNameAlreadyExist({
-		message: 'name already taken',
+		message: '用户名已被注册！',
 	})
 	name: string
 
@@ -19,7 +19,7 @@ export default class RegisterInput {
 	@Field()
 	@IsEmail()
 	@IsEmailAlreadyExist({
-		message: 'email already in use',
+		message: '邮箱已被注册！',
 	})
 	email: string
 }

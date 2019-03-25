@@ -38,7 +38,7 @@ export default class ShopResolver {
 	) {
 		const shop = await Shop.findOne(id)
 		if (!shop) {
-			throw new ApolloError('shop does not exist!')
+			throw new ApolloError('商店不存在!')
 		}
 
 		const pics = await Promise.all(files.map(processUpload))
@@ -57,7 +57,7 @@ export default class ShopResolver {
 	async deleteShop(@Arg('id') id: string) {
 		const shop = await Shop.findOne(id)
 		if (!shop) {
-			throw new ApolloError('shop does not exist!')
+			throw new ApolloError('商店不存在!')
 		}
 
 		await Shop.remove(shop)
@@ -86,7 +86,7 @@ export default class ShopResolver {
 			relations: ['foods'],
 		})
 		if (!shop) {
-			throw new ApolloError('shop does not exist!')
+			throw new ApolloError('商店不存在!')
 		}
 
 		return shop

@@ -14,20 +14,20 @@ export default class LoginResolver {
 	) {
 		const user = await User.findOne({ where: { name } })
 		if (!user) {
-			throw new ApolloError('user not register yet!', 'name')
+			throw new ApolloError('用户名还没有注册!', 'name')
 		}
 
 		if (!user.confirmed) {
-			throw new ApolloError('please confirm your register first!', 'name')
+			throw new ApolloError('请登录邮箱完成验证！', 'name')
 		}
 
 		if (user.isLocked) {
-			throw new ApolloError('account locked, please unlock first!', 'name')
+			throw new ApolloError('账号被锁定，请完成修改密码!', 'name')
 		}
 
 		const isValid = await bcrypt.compare(password, user.password)
 		if (!isValid) {
-			throw new ApolloError('password wrong!', 'password')
+			throw new ApolloError('密码错误!', 'password')
 		}
 
 		ctx.req.session!.userId = user.id

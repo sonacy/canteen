@@ -20,7 +20,7 @@ export default class FoodResolver {
 		const pics = await Promise.all(files.map(processUpload))
 		const shop = await Shop.findOne(shopId)
 		if (!shop) {
-			throw new ApolloError('shop does not exist!')
+			throw new ApolloError('商店已不存在!')
 		}
 		const food = await Food.create({
 			name,
@@ -44,7 +44,7 @@ export default class FoodResolver {
 	) {
 		const food = await Food.findOne(id)
 		if (!food) {
-			throw new ApolloError('food does not exist!')
+			throw new ApolloError('食物不存在!')
 		}
 
 		const pics = await Promise.all(files.map(processUpload))
@@ -63,7 +63,7 @@ export default class FoodResolver {
 	async deleteFood(@Arg('id') id: string) {
 		const food = await Food.findOne(id)
 		if (!food) {
-			throw new ApolloError('food does not exist!')
+			throw new ApolloError('食物不存在!')
 		}
 
 		await Food.remove(food)
@@ -80,7 +80,7 @@ export default class FoodResolver {
 	) {
 		const shop = await Shop.findOne(shopId)
 		if (!shop) {
-			throw new ApolloError('shop does not exist!')
+			throw new ApolloError('商店已不存在!')
 		}
 		const data = await Food.find({
 			where: { shop },
@@ -98,7 +98,7 @@ export default class FoodResolver {
 			relations: ['shop'],
 		})
 		if (!food) {
-			throw new ApolloError('food does not exist!')
+			throw new ApolloError('食物不存在!')
 		}
 
 		return food
