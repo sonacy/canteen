@@ -9,7 +9,7 @@ interface IProps extends RouteComponentProps {
 	form: WrappedFormUtils
 }
 
-const Login = ({ form, history }: IProps) => {
+const Login = ({ form, history, location }: IProps) => {
 	const { validateFields, setFields, getFieldValue } = form
 
 	return (
@@ -39,7 +39,12 @@ const Login = ({ form, history }: IProps) => {
 												}
 											})
 										} else {
-											history.push('/')
+											const { next } = location.state
+											if (next) {
+												history.push(next)
+											} else {
+												history.push('/')
+											}
 										}
 									}
 								})
