@@ -7,6 +7,7 @@ import TextPage from './text'
 import Login from './user/login'
 import ConfirmUser from './user/confirmUser'
 import ForgetPassword from './user/forgetPassword'
+import ChangePassword from './user/changePassword'
 
 export default class Routes extends PureComponent {
 	render() {
@@ -28,6 +29,11 @@ export default class Routes extends PureComponent {
 					path="/forget-password"
 					exact={true}
 					component={ForgetPassword}
+				/>
+				<Route
+					path="/user/change-password/:token"
+					exact={true}
+					component={ChangePassword}
 				/>
 				<Route path="/main" exact={true} component={Main} />
 				<Route path="/about" exact={true} component={About} />
