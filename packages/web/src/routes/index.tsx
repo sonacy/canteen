@@ -5,6 +5,7 @@ import About from './about'
 import Register from './user/register'
 import TextPage from './text'
 import Login from './user/login'
+import ConfirmUser from './user/confirmUser'
 
 export default class Routes extends PureComponent {
 	render() {
@@ -17,6 +18,11 @@ export default class Routes extends PureComponent {
 				/>
 				<Route path="/register" exact={true} component={Register} />
 				<Route path="/login" exact={true} component={Login} />
+				<Route
+					path="/user/confirm/:token"
+					exact={true}
+					component={ConfirmUser}
+				/>
 				<Route path="/main" exact={true} component={Main} />
 				<Route path="/about" exact={true} component={About} />
 				<Route path="/m" component={TextPage} />

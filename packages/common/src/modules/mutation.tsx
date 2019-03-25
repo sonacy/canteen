@@ -1,5 +1,5 @@
 import React from 'react'
-import { Mutation, FetchResult } from 'react-apollo'
+import { Mutation } from 'react-apollo'
 import { handleErrors } from '../utils/handleErrors'
 
 export const mutationHOC = <T, F>(mutation: any) => {
@@ -11,7 +11,7 @@ export const mutationHOC = <T, F>(mutation: any) => {
 				values: F
 			) => Promise<{
 				errors?: Array<{ [key: string]: string }>
-				data?: void | FetchResult<T, Record<string, any>, Record<string, any>>
+				data?: any
 			}>
 		}) => JSX.Element | null
 	}) => {
