@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 import {
 	ChangePasswordMutation,
 	ChangePasswordMutationVariables,
-} from 'src/types/ChangePasswordMutation'
+} from '../types/ChangePasswordMutation'
 
 const ChangePasswordMutation = gql`
 	mutation ChangePasswordMutation($token: String!, $newPassword: String!) {

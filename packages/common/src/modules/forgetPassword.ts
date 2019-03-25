@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 import {
 	ForgotPasswordMutation,
 	ForgotPasswordMutationVariables,
-} from 'src/types/ForgotPasswordMutation'
+} from '../types/ForgotPasswordMutation'
 
 const ForgetPasswordMutation = gql`
 	mutation ForgotPasswordMutation($email: String!) {

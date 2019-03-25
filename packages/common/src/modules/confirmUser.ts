@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 import {
 	ConfirmUserMutation,
 	ConfirmUserMutationVariables,
-} from 'src/types/ConfirmUserMutation'
+} from '../types/ConfirmUserMutation'
 
 const ConfirmUserMutation = gql`
 	mutation ConfirmUserMutation($token: String!) {

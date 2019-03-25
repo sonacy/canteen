@@ -8,6 +8,7 @@ import Login from './user/login'
 import ConfirmUser from './user/confirmUser'
 import ForgetPassword from './user/forgetPassword'
 import ChangePassword from './user/changePassword'
+import ShopListing from './shop/ShopListing'
 
 export default class Routes extends PureComponent {
 	render() {
@@ -16,7 +17,7 @@ export default class Routes extends PureComponent {
 				<Route
 					path="/"
 					exact={true}
-					render={() => <Redirect to="/register" />}
+					render={() => <Redirect to="/shop/list" />}
 				/>
 				<Route path="/register" exact={true} component={Register} />
 				<Route path="/login" exact={true} component={Login} />
@@ -38,6 +39,7 @@ export default class Routes extends PureComponent {
 				<Route path="/main" exact={true} component={Main} />
 				<Route path="/about" exact={true} component={About} />
 				<Route path="/m" component={TextPage} />
+				<Route path="/shop/list" exact={true} component={ShopListing} />
 			</BrowserRouter>
 		)
 	}

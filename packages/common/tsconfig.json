@@ -13,9 +13,6 @@
     "strict": true,
     "esModuleInterop": true,
     "declaration": true,
-    "baseUrl": ".",
-    "paths": {},
-    "rootDirs": []
   },
   "include": [
     "./src/**/*"
