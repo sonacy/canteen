@@ -10,6 +10,7 @@ import ForgetPassword from './user/forgetPassword'
 import ChangePassword from './user/changePassword'
 import ShopListing from './shop/ShopListing'
 import { AuthRoute } from '@canteen/common'
+import ShopCreate from './shop/ShopCreate'
 
 export default class Routes extends PureComponent {
 	render() {
@@ -41,6 +42,7 @@ export default class Routes extends PureComponent {
 				<Route path="/about" exact={true} component={About} />
 				<Route path="/m" component={TextPage} />
 				<AuthRoute path="/shop/list" exact={true} component={ShopListing} />
+				<AuthRoute path="/shop/create" exact={true} component={ShopCreate} />
 			</BrowserRouter>
 		)
 	}

@@ -2,8 +2,9 @@ import React from 'react'
 import { ShopListController } from '@canteen/common'
 import { List, Button, Card } from 'antd'
 import defaultImg from '../../assets/img/default.jpg'
+import { RouteComponentProps } from 'react-router'
 
-const ShopListing = () => {
+const ShopListing = ({ history }: RouteComponentProps) => {
 	return (
 		<ShopListController variables={{ pageNo: 1, pageSize: 10 }}>
 			{({ data, error, loading, fetchMore }) => {
@@ -11,7 +12,13 @@ const ShopListing = () => {
 					<div style={{ width: 800, height: '100%', margin: 'auto' }}>
 						<List
 							header={
-								<Button type="primary" ghost={true}>
+								<Button
+									onClick={() => {
+										history.push('/shop/create')
+									}}
+									type="primary"
+									ghost={true}
+								>
 									添加
 								</Button>
 							}
