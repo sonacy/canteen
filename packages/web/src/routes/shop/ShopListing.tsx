@@ -1,75 +1,74 @@
 import React from 'react'
 import { ShopListController } from '@canteen/common'
-import { List, Button, Card } from 'antd'
+import { List, Button, Card, Spin, Empty, Icon } from 'antd'
 import defaultImg from '../../assets/img/shop.jpg'
 import { RouteComponentProps } from 'react-router'
+import classes from './list.styl'
 
 const ShopListing = ({ history }: RouteComponentProps) => {
 	return (
 		<ShopListController variables={{ pageNo: 1, pageSize: 10 }}>
 			{({ data, error, loading, fetchMore }) => {
+				if (loading)
+					return (
+						<Spin
+							style={{
+								position: 'fixed',
+								top: '50%',
+								left: '50%',
+							}}
+							size="large"
+							spinning={loading}
+						/>
+					)
+
 				return (
-					<div style={{ width: 800, height: '100%', margin: 'auto' }}>
-						<List
-							header={
-								<Button
+					<div className={classes.shopListContainer}>
+						<Button
+							className={classes.addBtn}
+							type="primary"
+							shape="circle"
+							icon="plus"
+							onClick={() => {
+								history.push('/shop/create')
+							}}
+						/>
+						{data ? (
+							data.pageShop.map(shop => (
+								<div
+									key={shop.id}
+									className={classes.shopItem}
 									onClick={() => {
-										history.push('/shop/create')
-									}}
-									type="primary"
-									ghost={true}
-								>
-									添加
-								</Button>
-							}
-							grid={{ gutter: 16, column: 4 }}
-							loading={loading}
-							dataSource={data!.pageShop}
-							renderItem={(item: any) => (
-								<List.Item
-									key={item.id}
-									onClick={() => {
-										history.push(`/shop/${item.id}`)
+										history.push(`/shop/detail/${shop.id}`)
 									}}
 								>
-									<Card
-										hoverable={true}
-										cover={
-											<img
-												height={160}
-												src={
-													item.pics
-														? `http://localhost:4000/images/${item.pics[0]}`
-														: defaultImg
-												}
-											/>
-										}
-									>
-										<Card.Meta
-											title={item.name}
-											description={
-												<>
-													<div
-														style={{
-															whiteSpace: 'nowrap',
-															overflow: 'hidden',
-															textOverflow: 'ellipsis',
-														}}
-													>{`地址: ${item.address || '无'}`}</div>
-													<div
-														style={{
-															whiteSpace: 'nowrap',
-															overflow: 'hidden',
-															textOverflow: 'ellipsis',
-														}}
-													>{`电话: ${item.phone || '无'}`}</div>
-												</>
+									<div className={classes.shopImg}>
+										<img
+											width={200}
+											height={200}
+											src={
+												shop.pics && shop.pics.length > 0
+													? `http://localhost:4000/images/${shop.pics[0]}`
+													: defaultImg
 											}
 										/>
-									</Card>
-								</List.Item>
-							)}
-						/>
+									</div>
+									<div className={classes.shopDetail}>
+										<div className={classes.shopName}>{shop.name}</div>
+										<div className={classes.shopSubTitle}>
+											<Icon type="environment" />
+											{shop.address || '无'}
+										</div>
+										<div className={classes.shopSubTitle}>
+											<Icon type="phone" />
+											{shop.phone || '无'}
+										</div>
+									</div>
+								</div>
+							))
+						) : (
+							<Empty description="没有商户信息,请添加" />
+						)}
 					</div>
 				)
 			}}

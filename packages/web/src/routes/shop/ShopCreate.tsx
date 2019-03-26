@@ -54,9 +54,9 @@ const ShopCreate = ({ form, history }: IProps) => {
 						<Button
 							type="primary"
 							ghost={true}
-							key="register"
+							key="cancel"
 							onClick={() => {
-								history.push('/register')
+								history.push('/shop/list')
 							}}
 						>
 							取消
