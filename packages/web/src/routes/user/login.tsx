@@ -14,7 +14,7 @@ const Login = ({ form, history, location }: IProps) => {
 
 	return (
 		<LoginController>
-			{({ submit }) => (
+			{({ submit, client }) => (
 				<Card
 					title="登录"
 					headStyle={{ textAlign: 'center' }}
@@ -39,6 +39,7 @@ const Login = ({ form, history, location }: IProps) => {
 												}
 											})
 										} else {
+											await client.resetStore()
 											const { next } = location.state
 											if (next) {
 												history.push(next)

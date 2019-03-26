@@ -1,7 +1,7 @@
 import React from 'react'
 import { ShopListController } from '@canteen/common'
 import { List, Button, Card } from 'antd'
-import defaultImg from '../../assets/img/default.jpg'
+import defaultImg from '../../assets/img/shop.jpg'
 import { RouteComponentProps } from 'react-router'
 
 const ShopListing = ({ history }: RouteComponentProps) => {
@@ -26,7 +26,12 @@ const ShopListing = ({ history }: RouteComponentProps) => {
 							loading={loading}
 							dataSource={data!.pageShop}
 							renderItem={(item: any) => (
-								<List.Item key={item.id}>
+								<List.Item
+									key={item.id}
+									onClick={() => {
+										history.push(`/shop/${item.id}`)
+									}}
+								>
 									<Card
 										hoverable={true}
 										cover={

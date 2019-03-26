@@ -1,12 +1,14 @@
 import React from 'react'
 import { Mutation } from 'react-apollo'
 import { handleErrors } from '../utils/handleErrors'
+import ApolloClient from 'apollo-client'
 
 export const mutationHOC = <T, F>(mutation: any) => {
 	const controller = ({
 		children,
 	}: {
 		children: (data: {
+			client: ApolloClient<Object>
 			submit: (
 				values: F
 			) => Promise<{
@@ -17,8 +19,9 @@ export const mutationHOC = <T, F>(mutation: any) => {
 	}) => {
 		return (
 			<Mutation<T, F> mutation={mutation}>
-				{mutate => {
+				{(mutate, { client }) => {
 					return children({
+						client,
 						submit: async values => {
 							try {
 								const data = await mutate({
