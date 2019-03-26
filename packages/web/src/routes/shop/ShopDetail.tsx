@@ -40,7 +40,7 @@ const ShopDetail = ({
 						</Empty>
 					)
 
-				const { name, address, phone, pics, foods } = data.detailShop
+				const { name, address, phone, pics, foods, id } = data.detailShop
 
 				return (
 					<div>
@@ -71,7 +71,18 @@ const ShopDetail = ({
 							</div>
 							<div className={classes.btns}>
 								<Button.Group>
-									<Button>修改商店</Button>
+									<Button
+										onClick={() => {
+											history.push('/shop/update', {
+												name,
+												address,
+												phone,
+												id,
+											})
+										}}
+									>
+										修改商店
+									</Button>
 									<Button>上传图片</Button>
 									<Button>添加食物</Button>
 								</Button.Group>

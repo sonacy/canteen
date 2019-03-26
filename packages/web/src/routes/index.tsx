@@ -12,6 +12,7 @@ import ShopListing from './shop/ShopListing'
 import { AuthRoute } from '@canteen/common'
 import ShopCreate from './shop/ShopCreate'
 import ShopDetail from './shop/ShopDetail'
+import ShopUpdate from './shop/ShopUpdate'
 
 export default class Routes extends PureComponent {
 	render() {
@@ -44,6 +45,7 @@ export default class Routes extends PureComponent {
 				<Route path="/m" component={TextPage} />
 				<AuthRoute path="/shop/list" exact={true} component={ShopListing} />
 				<AuthRoute path="/shop/create" exact={true} component={ShopCreate} />
+				<AuthRoute path="/shop/update" exact={true} component={ShopUpdate} />
 				<AuthRoute
 					path="/shop/detail/:id"
 					exact={true}

@@ -40,9 +40,10 @@ export default class ShopResolver {
 		if (!shop) {
 			throw new ApolloError('商店不存在!')
 		}
-
-		const pics = await Promise.all(files.map(processUpload))
-		shop.pics.push(...pics)
+		if (files) {
+			const pics = await Promise.all(files.map(processUpload))
+			shop.pics.push(...pics)
+		}
 		shop.name = name
 		shop.phone = phone
 		shop.address = address

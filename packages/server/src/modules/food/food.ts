@@ -46,9 +46,10 @@ export default class FoodResolver {
 		if (!food) {
 			throw new ApolloError('食物不存在!')
 		}
-
-		const pics = await Promise.all(files.map(processUpload))
-		food.pics.push(...pics)
+		if (files) {
+			const pics = await Promise.all(files.map(processUpload))
+			food.pics.push(...pics)
+		}
 		food.name = name
 		food.price = price
 		food.calories = calories
