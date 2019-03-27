@@ -46,13 +46,38 @@ export default class FoodResolver {
 		if (!food) {
 			throw new ApolloError('食物不存在!')
 		}
+		const foodPics = food.pics || []
 		if (files) {
 			const pics = await Promise.all(files.map(processUpload))
-			food.pics.push(...pics)
+			foodPics.push(...pics)
 		}
+		food.pics = foodPics
 		food.name = name
 		food.price = price
 		food.calories = calories
+
+		await food.save()
+
+		return food
+	}
+
+	@Mutation(() => Food)
+	@Authorized()
+	async uploadPicsToFood(
+		@Arg('id') id: string,
+		@Arg('pics', () => [GraphQLUpload])
+		files: Array<Promise<IUpload>>
+	) {
+		const food = await Food.findOne(id)
+		if (!food) {
+			throw new ApolloError('食物不存在!')
+		}
+		const foodPics = food.pics || []
+		if (files) {
+			const pics = await Promise.all(files.map(processUpload))
+			foodPics.push(...pics)
+		}
+		food.pics = foodPics
 
 		await food.save()
 

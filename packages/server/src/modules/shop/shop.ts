@@ -40,14 +40,38 @@ export default class ShopResolver {
 		if (!shop) {
 			throw new ApolloError('商店不存在!')
 		}
+		const shopPics = shop.pics || []
 		if (files) {
 			const pics = await Promise.all(files.map(processUpload))
-			shop.pics.push(...pics)
+			shopPics.push(...pics)
 		}
+		shop.pics = shopPics
 		shop.name = name
 		shop.phone = phone
 		shop.address = address
 
+		await shop.save()
+
+		return shop
+	}
+
+	@Mutation(() => Shop)
+	@Authorized()
+	async updatePicsToShop(
+		@Arg('id') id: string,
+		@Arg('pics', () => [GraphQLUpload])
+		files: Array<Promise<IUpload>>
+	) {
+		const shop = await Shop.findOne(id)
+		if (!shop) {
+			throw new ApolloError('商店不存在!')
+		}
+		const shopPics = shop.pics || []
+		if (files) {
+			const pics = await Promise.all(files.map(processUpload))
+			shopPics.push(...pics)
+		}
+		shop.pics = shopPics
 		await shop.save()
 
 		return shop

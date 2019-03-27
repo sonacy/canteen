@@ -13,6 +13,7 @@ import { AuthRoute } from '@canteen/common'
 import ShopCreate from './shop/ShopCreate'
 import ShopDetail from './shop/ShopDetail'
 import ShopUpdate from './shop/ShopUpdate'
+import ShopUploadPics from './shop/ShopUploadPics'
 
 export default class Routes extends PureComponent {
 	render() {
@@ -50,6 +51,11 @@ export default class Routes extends PureComponent {
 					path="/shop/detail/:id"
 					exact={true}
 					component={ShopDetail}
+				/>
+				<AuthRoute
+					path="/shop/upload/:id"
+					exact={true}
+					component={ShopUploadPics}
 				/>
 			</BrowserRouter>
 		)

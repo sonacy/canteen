@@ -44,7 +44,15 @@ const ShopDetail = ({
 
 				return (
 					<div>
-						<div className={classes.topPics}>
+						<div
+							className={classes.topPics}
+							style={{
+								justifyContent:
+									pics && pics.length * 204 > window.innerWidth
+										? 'left'
+										: 'center',
+							}}
+						>
 							{pics ? (
 								pics.map(url => (
 									<div className={classes.pic} key={url}>
@@ -83,7 +91,13 @@ const ShopDetail = ({
 									>
 										修改商店
 									</Button>
-									<Button>上传图片</Button>
+									<Button
+										onClick={() => {
+											history.push(`/shop/upload/${id}`)
+										}}
+									>
+										上传图片
+									</Button>
 									<Button>添加食物</Button>
 								</Button.Group>
 							</div>
