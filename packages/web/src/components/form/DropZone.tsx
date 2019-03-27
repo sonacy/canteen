@@ -135,7 +135,7 @@ export const DropzoneField = ({
 				<section>
 					<div {...getRootProps({ style })}>
 						<input {...getInputProps({ disabled })} />
-						<p>拖拽或点击上传文件</p>
+						<p style={{ textAlign: 'center' }}>拖拽或点击上传文件</p>
 					</div>
 					<aside
 						style={{

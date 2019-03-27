@@ -44,6 +44,15 @@ const ShopDetail = ({
 
 				return (
 					<div>
+						<Button
+							className={classes.backBtn}
+							type="primary"
+							shape="circle"
+							icon="arrow-left"
+							onClick={() => {
+								history.push('/shop/list')
+							}}
+						/>
 						<div
 							className={classes.topPics}
 							style={{
@@ -115,6 +124,12 @@ const ShopDetail = ({
 									{foods && foods.length > 0 ? (
 										foods.map(food => (
 											<Card
+												onClick={() => {
+													history.push('/food/update', {
+														shopId: id,
+														food,
+													})
+												}}
 												key={food.id}
 												hoverable={true}
 												style={{

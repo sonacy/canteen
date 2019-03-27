@@ -15,6 +15,7 @@ import ShopDetail from './shop/ShopDetail'
 import ShopUpdate from './shop/ShopUpdate'
 import ShopUploadPics from './shop/ShopUploadPics'
 import FoodCreate from './food/FoodCreate'
+import FoodUpdate from './food/FoodUpdate'
 
 export default class Routes extends PureComponent {
 	render() {
@@ -59,6 +60,7 @@ export default class Routes extends PureComponent {
 					component={ShopUploadPics}
 				/>
 				<AuthRoute path="/food/create" exact={true} component={FoodCreate} />
+				<AuthRoute path="/food/update" exact={true} component={FoodUpdate} />
 			</BrowserRouter>
 		)
 	}

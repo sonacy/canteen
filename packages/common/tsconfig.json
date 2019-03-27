@@ -12,7 +12,7 @@
     "experimentalDecorators": true,
     "strict": true,
     "esModuleInterop": true,
-    "declaration": true,
+    "declaration": true
   },
   "include": [
     "./src/**/*"
