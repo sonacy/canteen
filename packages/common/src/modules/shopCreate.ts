@@ -5,7 +5,7 @@ import {
 	CreateShopMutationVariables,
 } from '../types/CreateShopMutation'
 
-const ShopCreateMutation = gql`
+export const shopCreateMutation = gql`
 	mutation CreateShopMutation(
 		$name: String!
 		$address: String
@@ -21,4 +21,4 @@ const ShopCreateMutation = gql`
 export const ShopCreateController = mutationHOC<
 	CreateShopMutation,
 	CreateShopMutationVariables
->(ShopCreateMutation)
+>(shopCreateMutation)

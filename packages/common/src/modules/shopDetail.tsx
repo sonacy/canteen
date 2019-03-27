@@ -5,7 +5,7 @@ import {
 	ShopDetailQueryVariables,
 } from '../types/ShopDetailQuery'
 
-const shopDetailQuery = gql`
+export const shopDetailQuery = gql`
 	query ShopDetailQuery($id: String!) {
 		detailShop(id: $id) {
 			id

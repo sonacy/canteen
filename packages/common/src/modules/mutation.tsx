@@ -1,12 +1,19 @@
 import React from 'react'
 import { Mutation } from 'react-apollo'
 import { handleErrors } from '../utils/handleErrors'
-import ApolloClient from 'apollo-client'
+import ApolloClient, {
+	PureQueryOptions,
+	MutationUpdaterFn,
+} from 'apollo-client'
 
 export const mutationHOC = <T, F>(mutation: any) => {
 	const controller = ({
 		children,
+		refetchQueries,
+		update,
 	}: {
+		refetchQueries?: Array<string | PureQueryOptions>
+		update?: MutationUpdaterFn<T>
 		children: (data: {
 			client: ApolloClient<Object>
 			submit: (
@@ -26,6 +33,8 @@ export const mutationHOC = <T, F>(mutation: any) => {
 							try {
 								const data = await mutate({
 									variables: values,
+									refetchQueries,
+									update,
 								})
 								return {
 									data,

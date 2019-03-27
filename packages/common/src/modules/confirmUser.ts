@@ -5,7 +5,7 @@ import {
 	ConfirmUserMutationVariables,
 } from '../types/ConfirmUserMutation'
 
-const ConfirmUserMutation = gql`
+export const confirmUserMutation = gql`
 	mutation ConfirmUserMutation($token: String!) {
 		confirmUser(token: $token)
 	}
@@ -14,4 +14,4 @@ const ConfirmUserMutation = gql`
 export const ConfirmUserController = mutationHOC<
 	ConfirmUserMutation,
 	ConfirmUserMutationVariables
->(ConfirmUserMutation)
+>(confirmUserMutation)

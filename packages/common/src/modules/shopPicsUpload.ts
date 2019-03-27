@@ -5,7 +5,7 @@ import {
 	UploadPicsToShopMutationVariables,
 } from '../types/UploadPicsToShopMutation'
 
-const ShopPicsUploadMutation = gql`
+export const shopPicsUploadMutation = gql`
 	mutation UploadPicsToShopMutation($id: String!, $pics: [Upload!]!) {
 		updatePicsToShop(pics: $pics, id: $id) {
 			id
@@ -17,4 +17,4 @@ const ShopPicsUploadMutation = gql`
 export const ShopPicsUploadController = mutationHOC<
 	UploadPicsToShopMutation,
 	UploadPicsToShopMutationVariables
->(ShopPicsUploadMutation)
+>(shopPicsUploadMutation)

@@ -5,7 +5,7 @@ import {
 	ChangePasswordMutationVariables,
 } from '../types/ChangePasswordMutation'
 
-const ChangePasswordMutation = gql`
+export const changePasswordMutation = gql`
 	mutation ChangePasswordMutation($token: String!, $newPassword: String!) {
 		changePassword(token: $token, newPassword: $newPassword) {
 			name
@@ -16,4 +16,4 @@ const ChangePasswordMutation = gql`
 export const ChangePasswordController = mutationHOC<
 	ChangePasswordMutation,
 	ChangePasswordMutationVariables
->(ChangePasswordMutation)
+>(changePasswordMutation)

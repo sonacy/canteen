@@ -5,7 +5,7 @@ import {
 	ForgotPasswordMutationVariables,
 } from '../types/ForgotPasswordMutation'
 
-const ForgetPasswordMutation = gql`
+export const forgetPasswordMutation = gql`
 	mutation ForgotPasswordMutation($email: String!) {
 		forgotPassword(email: $email)
 	}
@@ -14,4 +14,4 @@ const ForgetPasswordMutation = gql`
 export const ForgetPasswordController = mutationHOC<
 	ForgotPasswordMutation,
 	ForgotPasswordMutationVariables
->(ForgetPasswordMutation)
+>(forgetPasswordMutation)

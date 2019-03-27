@@ -5,7 +5,7 @@ import {
 } from '../types/RegisterMutation'
 import { mutationHOC } from './mutation'
 
-const registerMutation = gql`
+export const registerMutation = gql`
 	mutation RegisterMutation($data: RegisterInput!) {
 		register(data: $data) {
 			name

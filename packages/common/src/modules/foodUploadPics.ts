@@ -5,7 +5,7 @@ import {
 	UploadPicsToFoodMutationVariables,
 } from '../types/UploadPicsToFoodMutation'
 
-const FoodPicsUploadMutation = gql`
+export const foodPicsUploadMutation = gql`
 	mutation UploadPicsToFoodMutation($id: String!, $pics: [Upload!]!) {
 		uploadPicsToFood(pics: $pics, id: $id) {
 			id
@@ -17,4 +17,4 @@ const FoodPicsUploadMutation = gql`
 export const FoodPicsUploadController = mutationHOC<
 	UploadPicsToFoodMutation,
 	UploadPicsToFoodMutationVariables
->(FoodPicsUploadMutation)
+>(foodPicsUploadMutation)

@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 import { PageShopQuery, PageShopQueryVariables } from '../types/PageShopQuery'
 import { queryHOC } from './query'
 
-const ShopListQuery = gql`
+export const shopListQuery = gql`
 	query PageShopQuery($pageSize: Float!, $pageNo: Float!) {
 		pageShop(pageSize: $pageSize, pageNo: $pageNo) {
 			name
@@ -17,4 +17,4 @@ const ShopListQuery = gql`
 export const ShopListController = queryHOC<
 	PageShopQuery,
 	PageShopQueryVariables
->(ShopListQuery)
+>(shopListQuery)

@@ -5,7 +5,7 @@ import {
 	CreateFoodMutationVariables,
 } from '../types/CreateFoodMutation'
 
-const foodCreateMutation = gql`
+export const foodCreateMutation = gql`
 	mutation CreateFoodMutation(
 		$name: String!
 		$price: Float!
@@ -21,6 +21,13 @@ const foodCreateMutation = gql`
 			shopId: $shopId
 		) {
 			id
+			name
+			price
+			calories
+			pics
+			shop {
+				id
+			}
 		}
 	}
 `

@@ -98,7 +98,15 @@ const ShopDetail = ({
 									>
 										上传图片
 									</Button>
-									<Button>添加食物</Button>
+									<Button
+										onClick={() => {
+											history.push('/food/create', {
+												shopId: id,
+											})
+										}}
+									>
+										添加食物
+									</Button>
 								</Button.Group>
 							</div>
 							<div className={classes.foods}>
@@ -109,7 +117,11 @@ const ShopDetail = ({
 											<Card
 												key={food.id}
 												hoverable={true}
-												style={{ width: 200, marginRight: 4 }}
+												style={{
+													width: 200,
+													marginRight: 8,
+													marginBottom: 8,
+												}}
 												cover={
 													<img
 														width={200}
@@ -121,11 +133,6 @@ const ShopDetail = ({
 														}
 													/>
 												}
-												actions={[
-													<Icon type="edit" key="update" />,
-													<Icon type="close" key="del" />,
-													<Icon type="info-circle" key="info" />,
-												]}
 											>
 												<Card.Meta
 													title={food.name}
