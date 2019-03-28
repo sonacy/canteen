@@ -92,7 +92,7 @@ const FoodForm = ({ form, food, submit, onFinish, shopId }: IProps) => {
 					field="calories"
 					label="热量"
 				/>
-				{!food && <DropzoneField form={form} field="pics" label="图片" />}
+				<DropzoneField form={form} field="pics" label="图片" />
 			</Form>
 		</Card>
 	)

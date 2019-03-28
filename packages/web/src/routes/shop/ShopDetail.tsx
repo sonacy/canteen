@@ -143,7 +143,9 @@ const ShopDetail = ({
 														height={180}
 														src={
 															food.pics
-																? `http://localhost:4000/images/${food.pics[0]}`
+																? `http://localhost:4000/images/${
+																		food.pics[food.pics.length - 1]
+																  }`
 																: defaultImg
 														}
 													/>

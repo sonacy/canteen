@@ -11,8 +11,15 @@ export const foodUpdateMutation = gql`
 		$name: String!
 		$price: Float!
 		$calories: Float!
+		$pics: [Upload!]
 	) {
-		updateFood(name: $name, price: $price, calories: $calories, id: $id) {
+		updateFood(
+			name: $name
+			price: $price
+			calories: $calories
+			id: $id
+			pics: $pics
+		) {
 			id
 			name
 			price
