@@ -30,4 +30,5 @@ export interface UpdateFoodMutationVariables {
   name: string;
   price: number;
   calories: number;
+  pics?: any[] | null;
 }

@@ -15,6 +15,7 @@ export const mutationHOC = <T, F>(mutation: any) => {
 		refetchQueries?: Array<string | PureQueryOptions>
 		update?: MutationUpdaterFn<T>
 		children: (data: {
+			loading?: boolean
 			client: ApolloClient<Object>
 			submit: (
 				values: F
@@ -26,8 +27,9 @@ export const mutationHOC = <T, F>(mutation: any) => {
 	}) => {
 		return (
 			<Mutation<T, F> mutation={mutation}>
-				{(mutate, { client }) => {
+				{(mutate, { client, loading }) => {
 					return children({
+						loading,
 						client,
 						submit: async values => {
 							try {

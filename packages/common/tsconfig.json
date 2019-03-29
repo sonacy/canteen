@@ -12,7 +12,8 @@
     "experimentalDecorators": true,
     "strict": true,
     "esModuleInterop": true,
-    "declaration": true
+    "declaration": true,
+    "types": ["node"]
   },
   "include": [
     "./src/**/*"
