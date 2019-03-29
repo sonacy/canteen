@@ -4,12 +4,21 @@ import { View, TouchableOpacity } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import { NavigationScreenProps, FlatList } from 'react-navigation'
 import defaultImg from '../../assets/shop.jpg'
-import { Image, Text, Divider } from 'react-native-elements'
+import { Image, Text, Divider, Icon } from 'react-native-elements'
 
 class ShopList extends React.Component<NavigationScreenProps> {
-	static navigationOptions = {
+	static navigationOptions = ({ navigation }: NavigationScreenProps) => ({
 		title: '餐馆列表',
-	}
+		headerRight: (
+			<TouchableOpacity
+				style={{ marginRight: 8 }}
+				onPress={() => {
+					navigation.navigate('ShopCreate')
+				}}>
+				<Icon name='add' color='#fff' />
+			</TouchableOpacity>
+		),
+	})
 
 	render() {
 		return (

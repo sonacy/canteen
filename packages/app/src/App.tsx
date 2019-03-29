@@ -11,6 +11,7 @@ import AlertView from './views/alert'
 import LoginView from './views/login'
 import ShopList from './views/shop/list'
 import ShopDetail from './views/shop/detail'
+import ShopCreate from './views/shop/create'
 
 const UserStack = createStackNavigator(
 	{
@@ -36,6 +37,7 @@ const AppStack = createStackNavigator(
 	{
 		ShopList: ShopList,
 		ShopDetail: ShopDetail,
+		ShopCreate: ShopCreate,
 	},
 	{
 		initialRouteName: 'ShopList',

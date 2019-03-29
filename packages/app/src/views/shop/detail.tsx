@@ -209,7 +209,7 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
 												<View
 													style={{
 														flex: 1,
-														marginLeft: 12,
+														marginLeft: 18,
 														paddingVertical: 12,
 													}}>
 													<Text
