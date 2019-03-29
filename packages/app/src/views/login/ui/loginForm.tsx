@@ -3,19 +3,18 @@ import { Formik, Field } from 'formik'
 import { Card, Button } from 'react-native-elements'
 import { View } from 'react-native'
 import { InputField } from '../../../components/InputField'
-import { RegisterMutationVariables } from '@canteen/common/dist/types/RegisterMutation'
-import { registerValidation } from './registerValidation'
 import Spinner from 'react-native-loading-spinner-overlay'
+import { LoginMutationVariables } from '@canteen/common/dist/types/LoginMutation'
+import { loginValidation } from './loginValidation'
 
 interface FormValues {
 	name: string
-	email: string
 	password: string
 }
 
 interface IProps {
 	submit: (
-		values: RegisterMutationVariables
+		values: LoginMutationVariables
 	) => Promise<{
 		errors?:
 			| {
@@ -25,20 +24,20 @@ interface IProps {
 		data?: any
 	}>
 	onFinish: () => void
-	backToLogin: () => void
+	goToRegister: () => void
 	loading: boolean
 }
 
-const RegisterForm = ({ submit, onFinish, loading, backToLogin }: IProps) => {
+const LoginForm = ({ submit, onFinish, loading, goToRegister }: IProps) => {
 	return (
 		<View style={{ flex: 1, justifyContent: 'center' }}>
 			<Spinner visible={loading} size='large' />
-			<Card title='注册'>
+			<Card title='登录'>
 				<Formik<FormValues>
-					validationSchema={registerValidation}
-					initialValues={{ email: '', name: '', password: '' }}
+					validationSchema={loginValidation}
+					initialValues={{ name: '', password: '' }}
 					onSubmit={async (values, { setErrors }) => {
-						const data = await submit({ data: values })
+						const data = await submit(values)
 						if (data.errors) {
 							const errors: any = {}
 							data.errors.forEach(x => {
@@ -56,13 +55,7 @@ const RegisterForm = ({ submit, onFinish, loading, backToLogin }: IProps) => {
 								autoCapitalize='none'
 								name='name'
 								component={InputField}
-								placeholder='姓名'
-							/>
-							<Field
-								name='email'
-								autoCapitalize='none'
-								component={InputField}
-								placeholder='邮箱'
+								placeholder='用户名'
 							/>
 							<Field
 								secureTextEntry={true}
@@ -72,7 +65,7 @@ const RegisterForm = ({ submit, onFinish, loading, backToLogin }: IProps) => {
 							/>
 							<Button
 								onPress={handleSubmit}
-								title='注册'
+								title='登录'
 								type='solid'
 								style={{
 									marginHorizontal: 24,
@@ -80,8 +73,8 @@ const RegisterForm = ({ submit, onFinish, loading, backToLogin }: IProps) => {
 								}}
 							/>
 							<Button
-								onPress={backToLogin}
-								title='返回登录'
+								onPress={goToRegister}
+								title='前往注册'
 								type='clear'
 								style={{
 									alignItems: 'flex-end',
@@ -100,4 +93,4 @@ const RegisterForm = ({ submit, onFinish, loading, backToLogin }: IProps) => {
 	)
 }
 
-export default RegisterForm
+export default LoginForm

@@ -15,6 +15,9 @@ class RegisterView extends React.Component<NavigationScreenProps> {
 					<RegisterForm
 						loading={!!loading}
 						submit={submit}
+						backToLogin={() => {
+							this.props.navigation.navigate('Login')
+						}}
 						onFinish={() => {
 							this.props.navigation.navigate('Msg', {
 								msg: '请登录邮箱完成验证!',
