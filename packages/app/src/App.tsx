@@ -1,36 +1,15 @@
 import React from 'react'
 import { ApolloProvider } from 'react-apollo'
-import { Button } from 'react-native-elements'
 import {
 	createAppContainer,
-	NavigationScreenProps,
-	SafeAreaView,
 	createStackNavigator,
 	createSwitchNavigator,
 } from 'react-navigation'
-import { Text } from 'react-native'
 import RegisterView from './views/register'
 import { client } from './apollo'
 import AlertView from './views/alert'
 import LoginView from './views/login'
-
-class ShopScreen extends React.Component<NavigationScreenProps> {
-	static navigationOptions = {
-		title: 'shop',
-	}
-
-	render() {
-		return (
-			<SafeAreaView>
-				<Text>shop view</Text>
-				<Button
-					title='go to user'
-					onPress={() => this.props.navigation.navigate('User')}
-				/>
-			</SafeAreaView>
-		)
-	}
-}
+import ShopList from './views/shop/list'
 
 const UserStack = createStackNavigator(
 	{
@@ -54,10 +33,10 @@ const UserStack = createStackNavigator(
 
 const AppStack = createStackNavigator(
 	{
-		Shop: ShopScreen,
+		ShopList: ShopList,
 	},
 	{
-		initialRouteName: 'Shop',
+		initialRouteName: 'ShopList',
 		defaultNavigationOptions: {
 			headerStyle: {
 				backgroundColor: '#d32323',
@@ -76,7 +55,7 @@ const stack = createSwitchNavigator(
 		App: AppStack,
 	},
 	{
-		initialRouteName: 'User',
+		initialRouteName: 'App',
 	}
 )
 

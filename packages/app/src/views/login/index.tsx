@@ -19,7 +19,7 @@ class LoginView extends React.Component<NavigationScreenProps> {
 							this.props.navigation.navigate('Register')
 						}}
 						onFinish={() => {
-							this.props.navigation.navigate('Shop')
+							this.props.navigation.navigate('ShopList')
 						}}
 					/>
 				)}

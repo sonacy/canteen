@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "./index.js",
   "scripts": {
-    "postinstall": "node ./scripts/enable-rn-hooks.js",
+    "prestart": "node ./scripts/enable-rn-hooks.js",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
