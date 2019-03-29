@@ -5,25 +5,9 @@
     "build:server": "lerna run build --scope={canteen/server}",
     "build:web": "lerna run build --scope={canteen/common,canteen/web}"
   },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ],
-    "nohoist": [
-      "**/rimraf",
-      "**/rimraf/**",
-      "**/jest",
-      "**/jest/**",
-      "**/react-native",
-      "**/react-native/**",
-      "**/expo",
-      "**/expo/**",
-      "**/react-native-typescript-transformer",
-      "**/react-native-typescript-transformer/**",
-      "**/metro-bundler-config-yarn-workspaces",
-      "**/metro-bundler-config-yarn-workspaces/**"
-    ]
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "lerna": "^3.13.1"
   }

@@ -65,3 +65,5 @@ dist
 .DS_Store
 
 packages/server/images
+
+.expo
