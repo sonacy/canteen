@@ -3,12 +3,12 @@ import { ShopListController } from '@canteen/common'
 import { View, TouchableOpacity } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import { NavigationScreenProps, FlatList } from 'react-navigation'
-import defaultImg from '../../assets/food.png'
+import defaultImg from '../../assets/shop.jpg'
 import { Image, Text, Divider } from 'react-native-elements'
 
 class ShopList extends React.Component<NavigationScreenProps> {
 	static navigationOptions = {
-		title: '餐馆',
+		title: '餐馆列表',
 	}
 
 	render() {
@@ -28,7 +28,12 @@ class ShopList extends React.Component<NavigationScreenProps> {
 								data={data ? data.pageShop : []}
 								renderItem={({ item }) => {
 									return (
-										<TouchableOpacity>
+										<TouchableOpacity
+											onPress={() => {
+												this.props.navigation.navigate('ShopDetail', {
+													id: item.id,
+												})
+											}}>
 											<View
 												style={{
 													height: 120,

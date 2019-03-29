@@ -10,6 +10,7 @@ import { client } from './apollo'
 import AlertView from './views/alert'
 import LoginView from './views/login'
 import ShopList from './views/shop/list'
+import ShopDetail from './views/shop/detail'
 
 const UserStack = createStackNavigator(
 	{
@@ -34,6 +35,7 @@ const UserStack = createStackNavigator(
 const AppStack = createStackNavigator(
 	{
 		ShopList: ShopList,
+		ShopDetail: ShopDetail,
 	},
 	{
 		initialRouteName: 'ShopList',
