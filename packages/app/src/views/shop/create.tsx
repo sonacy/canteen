@@ -4,25 +4,31 @@ import { NavigationScreenProps } from 'react-navigation'
 import ShopForm from './ui/shopForm'
 
 class ShopCreate extends React.Component<NavigationScreenProps> {
-	static navigationOptions = {
-		title: '创建店铺',
-	}
+  static navigationOptions = {
+    title: '创建店铺',
+  }
 
-	render() {
-		return (
-			<ShopCreateController>
-				{({ submit, loading }) => (
-					<ShopForm
-						loading={!!loading}
-						submit={submit}
-						onFinish={() => {
-							this.props.navigation.navigate('ShopList')
-						}}
-					/>
-				)}
-			</ShopCreateController>
-		)
-	}
+  render() {
+    return (
+      <ShopCreateController
+        onAuthError={() => {
+          this.props.navigation.navigate('Login', {
+            next: 'ShopList',
+          })
+        }}
+      >
+        {({ submit, loading }) => (
+          <ShopForm
+            loading={!!loading}
+            submit={submit}
+            onFinish={() => {
+              this.props.navigation.navigate('ShopList')
+            }}
+          />
+        )}
+      </ShopCreateController>
+    )
+  }
 }
 
 export default ShopCreate
