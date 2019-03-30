@@ -9,6 +9,10 @@
 export interface CreateShopMutation_createShop {
   __typename: "Shop";
   id: string;
+  name: string;
+  address: string | null;
+  phone: string | null;
+  pics: string[] | null;
 }
 
 export interface CreateShopMutation {

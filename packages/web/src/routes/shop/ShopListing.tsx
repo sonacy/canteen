@@ -33,7 +33,7 @@ const ShopListing = ({ history }: RouteComponentProps) => {
 								history.push('/shop/create')
 							}}
 						/>
-						{data ? (
+						{data && data.pageShop.length > 0 ? (
 							data.pageShop.map(shop => (
 								<div
 									key={shop.id}

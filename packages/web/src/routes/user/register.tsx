@@ -58,7 +58,7 @@ const Register = ({ form, history }: IProps) => {
 								history.push('/login')
 							}}
 						>
-							登录
+							返回登录
 						</Button>,
 					]}
 				>
