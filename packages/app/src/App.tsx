@@ -1,9 +1,9 @@
 import React from 'react'
 import { ApolloProvider } from 'react-apollo'
 import {
-	createAppContainer,
-	createStackNavigator,
-	createSwitchNavigator,
+  createAppContainer,
+  createStackNavigator,
+  createSwitchNavigator,
 } from 'react-navigation'
 import RegisterView from './views/register'
 import { client } from './apollo'
@@ -12,65 +12,67 @@ import LoginView from './views/login'
 import ShopList from './views/shop/list'
 import ShopDetail from './views/shop/detail'
 import ShopCreate from './views/shop/create'
+import ShopUpdate from './views/shop/update'
 
 const UserStack = createStackNavigator(
-	{
-		Register: RegisterView,
-		Login: LoginView,
-		Msg: AlertView,
-	},
-	{
-		initialRouteName: 'Login',
-		defaultNavigationOptions: {
-			headerStyle: {
-				backgroundColor: '#d32323',
-			},
-			headerTintColor: '#fff',
-			headerTitleStyle: {
-				fontWeight: 'bold',
-			},
-		},
-	}
+  {
+    Register: RegisterView,
+    Login: LoginView,
+    Msg: AlertView,
+  },
+  {
+    initialRouteName: 'Login',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#d32323',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
+  }
 )
 
 const AppStack = createStackNavigator(
-	{
-		ShopList: ShopList,
-		ShopDetail: ShopDetail,
-		ShopCreate: ShopCreate,
-	},
-	{
-		initialRouteName: 'ShopList',
-		defaultNavigationOptions: {
-			headerStyle: {
-				backgroundColor: '#d32323',
-			},
-			headerTintColor: '#fff',
-			headerTitleStyle: {
-				fontWeight: 'bold',
-			},
-		},
-	}
+  {
+    ShopList: ShopList,
+    ShopDetail: ShopDetail,
+    ShopCreate: ShopCreate,
+    ShopUpdate: ShopUpdate,
+  },
+  {
+    initialRouteName: 'ShopList',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#d32323',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
+  }
 )
 
 const stack = createSwitchNavigator(
-	{
-		User: UserStack,
-		App: AppStack,
-	},
-	{
-		initialRouteName: 'App',
-	}
+  {
+    User: UserStack,
+    App: AppStack,
+  },
+  {
+    initialRouteName: 'App',
+  }
 )
 
 const Routes = createAppContainer(stack)
 
 export default class App extends React.PureComponent {
-	render() {
-		return (
-			<ApolloProvider client={client}>
-				<Routes />
-			</ApolloProvider>
-		)
-	}
+  render() {
+    return (
+      <ApolloProvider client={client}>
+        <Routes />
+      </ApolloProvider>
+    )
+  }
 }
