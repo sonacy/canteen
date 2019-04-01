@@ -6,7 +6,11 @@ const errStyle = {
   color: 'red',
 }
 
-export class InputField extends React.Component<FieldProps<any>> {
+export class InputField extends React.Component<
+  FieldProps<any> & {
+    iconType: string
+  }
+> {
   onChangeText = (text: string) => {
     const {
       form: { setFieldValue },
@@ -17,6 +21,7 @@ export class InputField extends React.Component<FieldProps<any>> {
 
   render() {
     const {
+      iconType = 'smileo',
       field,
       form: { touched, errors },
       ...props
@@ -28,6 +33,20 @@ export class InputField extends React.Component<FieldProps<any>> {
     return (
       <Input
         {...props}
+        containerStyle={{
+          width: '90%',
+          marginLeft: '5%',
+          marginBottom: 24,
+        }}
+        leftIcon={{ type: 'antdesign', name: iconType, color: '#ccc' }}
+        inputContainerStyle={{
+          borderWidth: 1,
+          borderColor: '#ccc',
+          borderRadius: 5,
+        }}
+        inputStyle={{
+          marginLeft: 8,
+        }}
         errorStyle={errStyle}
         errorMessage={errorMsg}
         onChangeText={this.onChangeText}

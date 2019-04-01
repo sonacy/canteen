@@ -4,7 +4,6 @@ import { Button, Card } from 'react-native-elements'
 import { View } from 'react-native'
 import { InputField } from '../../../components/InputField'
 import Spinner from 'react-native-loading-spinner-overlay'
-import { CreateShopMutationVariables } from '@canteen/common/dist/types/CreateShopMutation'
 import { UploadField } from '../../../components/UploadField'
 import { UpdateShopMutationVariables } from '@canteen/common/dist/types/updateShopMutation'
 
@@ -70,18 +69,21 @@ const ShopForm = ({ submit, onFinish, loading, shop }: IProps) => {
               name='name'
               component={InputField}
               placeholder='店面'
+              iconType='home'
             />
             <Field
               name='address'
               autoCapitalize='none'
               component={InputField}
               placeholder='地址'
+              iconType='enviromento'
             />
             <Field
               autoCapitalize='none'
               name='phone'
               component={InputField}
               placeholder='电话'
+              iconType='mobile1'
             />
             {!shop && (
               <Field
@@ -93,7 +95,7 @@ const ShopForm = ({ submit, onFinish, loading, shop }: IProps) => {
             )}
             <View
               style={{
-                marginTop: shop ? 12 : 0,
+                marginTop: 12,
                 flexDirection: 'row',
                 justifyContent: 'space-around',
               }}
