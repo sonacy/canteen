@@ -13,6 +13,9 @@ import ShopList from './views/shop/list'
 import ShopDetail from './views/shop/detail'
 import ShopCreate from './views/shop/create'
 import ShopUpdate from './views/shop/update'
+import { Icon } from 'react-native-elements'
+import { TouchableOpacity } from 'react-native'
+import { LogoutController } from '@canteen/common'
 
 const UserStack = createStackNavigator(
   {
@@ -43,7 +46,7 @@ const AppStack = createStackNavigator(
   },
   {
     initialRouteName: 'ShopList',
-    defaultNavigationOptions: {
+    defaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
         backgroundColor: '#d32323',
       },
@@ -51,7 +54,24 @@ const AppStack = createStackNavigator(
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-    },
+      headerRight: (
+        <LogoutController>
+          {({ submit }) => {
+            return (
+              <TouchableOpacity
+                style={{ marginRight: 12 }}
+                onPress={async () => {
+                  await submit({})
+                  navigation.navigate('Login')
+                }}
+              >
+                <Icon type='antdesign' name='logout' color='#fff' size={18} />
+              </TouchableOpacity>
+            )
+          }}
+        </LogoutController>
+      ),
+    }),
   }
 )
 

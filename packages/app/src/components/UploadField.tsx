@@ -5,20 +5,7 @@ import { ImagePicker, Permissions } from 'expo'
 import { ReactNativeFile } from 'apollo-upload-client'
 import { View, TouchableOpacity } from 'react-native'
 
-interface IState {
-  images: ReactNativeFile[]
-}
-
-export class UploadField extends React.Component<
-  FieldProps<any> & {
-    title: string
-  },
-  IState
-> {
-  state: IState = {
-    images: [],
-  }
-
+export class UploadField extends React.Component<FieldProps<any>> {
   onPress = async () => {
     const { status } = await Permissions.getAsync(Permissions.CAMERA_ROLL)
     if (status !== 'granted') {
@@ -28,7 +15,11 @@ export class UploadField extends React.Component<
       mediaTypes: 'Images',
     })
     if (!imageResult.cancelled) {
-      const images = this.state.images
+      const {
+        field: { name, value },
+        form: { setFieldValue },
+      } = this.props
+      const images = value
       images.push(
         new ReactNativeFile({
           uri: imageResult.uri,
@@ -36,14 +27,7 @@ export class UploadField extends React.Component<
           name: 'picture',
         })
       )
-      this.setState({
-        images,
-      })
 
-      const {
-        field: { name },
-        form: { setFieldValue },
-      } = this.props
       setFieldValue(name, images)
     }
   }
@@ -65,7 +49,7 @@ export class UploadField extends React.Component<
           marginHorizontal: '5%',
         }}
       >
-        {this.state.images.map(image => (
+        {field.value.map((image: ReactNativeFile) => (
           <Image
             key={image.uri}
             source={{ uri: image.uri }}

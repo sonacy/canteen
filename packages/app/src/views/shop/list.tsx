@@ -9,9 +9,9 @@ import { Image, Text, Divider, Icon } from 'react-native-elements'
 class ShopList extends React.Component<NavigationScreenProps> {
   static navigationOptions = ({ navigation }: NavigationScreenProps) => ({
     title: '餐馆列表',
-    headerRight: (
+    headerLeft: (
       <TouchableOpacity
-        style={{ marginRight: 8 }}
+        style={{ marginLeft: 12 }}
         onPress={() => {
           navigation.navigate('ShopCreate')
         }}

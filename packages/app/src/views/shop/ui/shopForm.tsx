@@ -1,6 +1,6 @@
 import React from 'react'
 import { Formik, Field } from 'formik'
-import { Button, Card } from 'react-native-elements'
+import { Button } from 'react-native-elements'
 import { View } from 'react-native'
 import { InputField } from '../../../components/InputField'
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -93,16 +93,15 @@ const ShopForm = ({ submit, onFinish, loading, shop }: IProps) => {
                 component={UploadField}
               />
             )}
-            <View
+
+            <Button
               style={{
                 marginTop: 12,
-                flexDirection: 'row',
-                justifyContent: 'space-around',
+                marginHorizontal: '5%',
               }}
-            >
-              <Button onPress={handleSubmit} title='确定' />
-              <Button onPress={onFinish} title='取消' />
-            </View>
+              onPress={handleSubmit}
+              title='确定'
+            />
           </>
         )}
       />
