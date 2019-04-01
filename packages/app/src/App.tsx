@@ -16,6 +16,7 @@ import ShopUpdate from './views/shop/update'
 import { Icon } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native'
 import { LogoutController } from '@canteen/common'
+import ShopUpload from './views/shop/upload'
 
 const UserStack = createStackNavigator(
   {
@@ -43,6 +44,7 @@ const AppStack = createStackNavigator(
     ShopDetail: ShopDetail,
     ShopCreate: ShopCreate,
     ShopUpdate: ShopUpdate,
+    ShopUpload: ShopUpload,
   },
   {
     initialRouteName: 'ShopList',

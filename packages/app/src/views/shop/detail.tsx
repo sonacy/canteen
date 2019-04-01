@@ -156,6 +156,11 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
                         </Text>
                       </TouchableOpacity>
                       <TouchableOpacity
+                        onPress={() => {
+                          this.props.navigation.navigate('ShopUpload', {
+                            id: data.detailShop.id,
+                          })
+                        }}
                         style={{
                           flex: 1,
                         }}

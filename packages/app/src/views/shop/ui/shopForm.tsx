@@ -36,7 +36,6 @@ const ShopForm = ({ submit, onFinish, loading, shop }: IProps) => {
       <Spinner visible={loading} size='large' />
       <Formik<FormValues>
         initialValues={{
-          id: shop ? shop.id : '',
           address: shop ? shop.address : '',
           name: shop ? shop.name : '',
           phone: shop ? shop.phone : '',
@@ -88,7 +87,6 @@ const ShopForm = ({ submit, onFinish, loading, shop }: IProps) => {
             {!shop && (
               <Field
                 style={{ margin: 12 }}
-                title='上传图片'
                 name='pics'
                 component={UploadField}
               />
