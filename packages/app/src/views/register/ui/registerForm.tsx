@@ -77,16 +77,16 @@ const RegisterForm = ({ submit, onFinish, loading, backToLogin }: IProps) => {
 							onPress={handleSubmit}
 							title='注册'
 							type='solid'
-							style={{
-								marginHorizontal: 24,
-								marginTop: 24,
+							containerStyle={{
+								marginHorizontal: '5%',
+								marginTop: 12,
 							}}
 						/>
 						<Button
 							onPress={backToLogin}
 							title='返回登录'
 							type='clear'
-							style={{
+							containerStyle={{
 								alignItems: 'flex-end',
 								marginRight: 24,
 								marginTop: 12,

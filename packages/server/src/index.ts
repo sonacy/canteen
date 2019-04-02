@@ -50,7 +50,7 @@ const main = async () => {
 	server.applyMiddleware({ app, cors: false })
 
 	const port = 4000
-	const host = 'localhost'
+	const host = '0.0.0.0'
 
 	app.listen(port, host, () => {
 		console.log(

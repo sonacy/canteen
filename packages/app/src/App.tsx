@@ -35,6 +35,8 @@ const UserStack = createStackNavigator(
 			headerTintColor: '#fff',
 			headerTitleStyle: {
 				fontWeight: 'bold',
+				textAlign: 'center',
+				flex: 1,
 			},
 		},
 	}
@@ -59,6 +61,8 @@ const AppStack = createStackNavigator(
 			headerTintColor: '#fff',
 			headerTitleStyle: {
 				fontWeight: 'bold',
+				textAlign: 'center',
+				flex: 1,
 			},
 			headerRight: (
 				<LogoutController>

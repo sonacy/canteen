@@ -61,7 +61,7 @@ class ShopUpload extends React.Component<NavigationScreenProps> {
 									/>
 
 									<Button
-										style={{
+										containerStyle={{
 											marginTop: 12,
 											marginHorizontal: '5%',
 										}}

@@ -93,7 +93,7 @@ const ShopForm = ({ submit, onFinish, loading, shop }: IProps) => {
 						)}
 
 						<Button
-							style={{
+							containerStyle={{
 								marginTop: 12,
 								marginHorizontal: '5%',
 							}}

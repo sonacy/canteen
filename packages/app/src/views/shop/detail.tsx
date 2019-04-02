@@ -54,7 +54,7 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
 													style={styles.image}
 													containerStyle={styles.slideInnerContainer}
 													source={{
-														uri: `http://localhost:4000/images/${item}`,
+														uri: `http://30.22.108.13:4000/images/${item}`,
 													}}
 												/>
 											)
@@ -103,6 +103,8 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
 												numberOfLines={2}
 												style={{
 													fontSize: 16,
+													lineHeight: 24,
+													paddingRight: 12,
 													color: '#999',
 													marginLeft: 12,
 												}}>
@@ -218,7 +220,7 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
 													})
 												}}
 												style={{
-													height: 120,
+													height: 96,
 													flexDirection: 'row',
 													marginBottom: 12,
 													backgroundColor: '#fff',
@@ -226,13 +228,13 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
 												key={item.id}>
 												<Image
 													style={{
-														width: 160,
-														height: 120,
+														width: 148,
+														height: 96,
 													}}
 													source={
 														item.pics && item.pics.length > 0
 															? {
-																	uri: `http://localhost:4000/images/${
+																	uri: `http://30.22.108.13:4000/images/${
 																		item.pics[0]
 																	}`,
 															  }
@@ -241,15 +243,14 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
 												/>
 												<View
 													style={{
-														flex: 1,
+														justifyContent: 'center',
 														marginLeft: 18,
-														paddingVertical: 12,
 													}}>
 													<Text
 														numberOfLines={1}
 														style={{
 															fontSize: 24,
-															lineHeight: 32,
+															lineHeight: 40,
 															fontWeight: '700',
 														}}>
 														{item.name}
@@ -257,7 +258,7 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
 													<View
 														style={{
 															flexDirection: 'row',
-															height: 32,
+															height: 24,
 															alignItems: 'center',
 														}}>
 														<Icon
@@ -278,7 +279,7 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
 													<View
 														style={{
 															flexDirection: 'row',
-															height: 32,
+															height: 24,
 															alignItems: 'center',
 														}}>
 														<Icon

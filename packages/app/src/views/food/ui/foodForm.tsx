@@ -58,6 +58,7 @@ const FoodForm = ({ submit, onFinish, loading, food, shopId }: IProps) => {
 							  }
 							: { ...params, shopId }
 					)
+					console.log(data)
 
 					if (data.errors) {
 						const errors: any = {}
@@ -96,7 +97,7 @@ const FoodForm = ({ submit, onFinish, loading, food, shopId }: IProps) => {
 						<Field style={{ margin: 12 }} name='pics' component={UploadField} />
 
 						<Button
-							style={{
+							containerStyle={{
 								marginTop: 12,
 								marginHorizontal: '5%',
 							}}

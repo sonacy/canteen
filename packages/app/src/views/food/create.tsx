@@ -1,7 +1,11 @@
 import React from 'react'
-import { FoodCreateController } from '@canteen/common'
+import { FoodCreateController, shopDetailQuery } from '@canteen/common'
 import { NavigationScreenProps } from 'react-navigation'
 import FoodForm from './ui/foodForm'
+import {
+	ShopDetailQuery,
+	ShopDetailQueryVariables,
+} from '@canteen/common/dist/types/ShopDetailQuery'
 
 class FoodCreate extends React.Component<NavigationScreenProps> {
 	static navigationOptions = {
@@ -13,6 +17,28 @@ class FoodCreate extends React.Component<NavigationScreenProps> {
 
 		return (
 			<FoodCreateController
+				update={(store, { data }) => {
+					if (data && data.createFood) {
+						const shop = store.readQuery<
+							ShopDetailQuery,
+							ShopDetailQueryVariables
+						>({
+							query: shopDetailQuery,
+							variables: { id },
+						})
+						if (shop) {
+							const foods = shop.detailShop.foods || []
+							foods.push(data.createFood)
+							shop.detailShop.foods = foods.slice()
+
+							store.writeQuery<ShopDetailQuery, ShopDetailQueryVariables>({
+								query: shopDetailQuery,
+								data: shop,
+								variables: { id },
+							})
+						}
+					}
+				}}
 				onAuthError={() => {
 					this.props.navigation.navigate('Login', {
 						next: 'ShopDetail',
