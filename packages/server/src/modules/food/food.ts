@@ -29,6 +29,7 @@ export default class FoodResolver {
 			calories,
 			shop,
 		}).save()
+
 		return food
 	}
 
