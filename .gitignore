@@ -69,3 +69,4 @@ packages/server/images
 .expo
 
 .env*
+.netlify

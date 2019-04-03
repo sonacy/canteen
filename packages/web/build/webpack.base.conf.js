@@ -10,6 +10,7 @@ const HtmlPlugin = require('html-webpack-plugin')
 const pkg = require(resolve(__dirname, '../package.json'))
 const webpack = require('webpack')
 const Dotenv = require('dotenv-webpack')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 module.exports = {
   devtool: isDev ? 'cheap-module-eval-source-map' : 'source-map',
@@ -156,6 +157,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new HardSourceWebpackPlugin(),
     new CheckerPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
@@ -168,7 +170,7 @@ module.exports = {
     }),
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn|en/),
     new Dotenv({
-      path: `../.env.${process.env.NODE_ENV}`
+      path: resolve(__dirname, `../.env.${process.env.NODE_ENV || "production"}`)
     })
   ],
 }

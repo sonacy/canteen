@@ -65,7 +65,9 @@ const ShopDetail = ({
 							{pics ? (
 								pics.map(url => (
 									<div className={classes.pic} key={url}>
-										<img src={`http://localhost:4000/images/${url}`} />
+										<img
+											src={`${process.env.REACT_APP_SERVER_URL}/images/${url}`}
+										/>
 									</div>
 								))
 							) : (
@@ -143,7 +145,7 @@ const ShopDetail = ({
 														height={180}
 														src={
 															food.pics
-																? `http://localhost:4000/images/${
+																? `${process.env.REACT_APP_SERVER_URL}/images/${
 																		food.pics[food.pics.length - 1]
 																  }`
 																: defaultImg

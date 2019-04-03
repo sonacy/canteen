@@ -48,7 +48,9 @@ const ShopListing = ({ history }: RouteComponentProps) => {
 											height={200}
 											src={
 												shop.pics && shop.pics.length > 0
-													? `http://localhost:4000/images/${shop.pics[0]}`
+													? `${process.env.REACT_APP_SERVER_URL}/images/${
+															shop.pics[0]
+													  }`
 													: defaultImg
 											}
 										/>
