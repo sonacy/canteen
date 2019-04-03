@@ -43,7 +43,7 @@ const ChangePassword = ({ form, history, match }: IProps) => {
 											notification.success({
 												message: '修改密码成功!',
 											})
-											history.push('/')
+											history.push('/shop/list')
 										}
 									}
 								})

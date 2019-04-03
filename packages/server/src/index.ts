@@ -34,6 +34,8 @@ const main = async () => {
 
 	const schema = await createSchema()
 	const server = new ApolloServer({
+		playground: true,
+		introspection: true,
 		schema,
 		context: ({ req, res }: any) => ({ req, res }),
 	})
@@ -63,7 +65,7 @@ const main = async () => {
 			saveUninitialized: false,
 			cookie: {
 				httpOnly: true,
-				secure: process.env.NODE_ENV === 'production',
+				secure: false,
 				maxAge: 1000 * 60 * 60 * 24 * 7,
 			},
 		})

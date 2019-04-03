@@ -70,3 +70,4 @@ packages/server/images
 
 .env*
 .netlify
+docs.*

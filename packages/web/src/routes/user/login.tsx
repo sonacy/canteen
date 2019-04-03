@@ -40,7 +40,8 @@ const Login = ({ form, history, location }: IProps) => {
 											})
 										} else {
 											await client.resetStore()
-											const next = location.state ? location.state.next : '/'
+											const next =
+												(location.state && location.state.next) || '/shop/list'
 											history.push(next)
 										}
 									}

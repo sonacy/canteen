@@ -130,6 +130,7 @@ export const DropzoneField = ({
 			wrapperCol={{ span: 24 - labelCol }}
 		>
 			{getFieldDecorator(field, {
+				initialValue: [],
 				rules: [{ required, message: `${label}不能为空!` }, ...rules],
 			})(
 				<section>
