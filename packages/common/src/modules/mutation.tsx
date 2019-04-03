@@ -35,8 +35,6 @@ export const mutationHOC = <T, F>(mutation: any) => {
 						if (typeof onAuthError === 'function') {
 							onAuthError()
 						}
-					} else {
-						throw error
 					}
 				}}>
 				{(mutate, { client, loading }) => {

@@ -54,7 +54,7 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
 													style={styles.image}
 													containerStyle={styles.slideInnerContainer}
 													source={{
-														uri: `http://30.22.108.13:4000/images/${item}`,
+														uri: `http://30.22.108.11:4000/images/${item}`,
 													}}
 												/>
 											)
@@ -234,7 +234,7 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
 													source={
 														item.pics && item.pics.length > 0
 															? {
-																	uri: `http://30.22.108.13:4000/images/${
+																	uri: `http://30.22.108.11:4000/images/${
 																		item.pics[0]
 																	}`,
 															  }

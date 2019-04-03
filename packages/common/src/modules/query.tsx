@@ -38,8 +38,6 @@ export const queryHOC = <T, F>(query: any) => {
 						if (typeof onAuthError === 'function') {
 							onAuthError()
 						}
-					} else {
-						throw error
 					}
 				}}>
 				{({ data, loading, error, fetchMore }) =>

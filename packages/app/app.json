@@ -27,6 +27,8 @@
     },
     "packagerOpts": {
       "config": "rn-cli.config.js"
-    }
+    },
+    "description": "",
+    "githubUrl": "https://github.com/sonacy/canteen"
   }
 }

@@ -3,7 +3,7 @@ import { FieldProps } from 'formik'
 import { Image, Icon } from 'react-native-elements'
 import { ImagePicker, Permissions } from 'expo'
 import { ReactNativeFile } from 'apollo-upload-client'
-import { View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 
 export class UploadField extends React.Component<FieldProps<any>> {
 	onPress = async () => {
@@ -20,10 +20,37 @@ export class UploadField extends React.Component<FieldProps<any>> {
 				form: { setFieldValue },
 			} = this.props
 			const images = value
+
+			let type: string = imageResult.type
+			if (!type.includes('image/')) {
+				const ext = imageResult.uri.slice(imageResult.uri.lastIndexOf('.') + 1)
+				switch (ext) {
+					case 'gif':
+						type = 'image/gif'
+						break
+					case 'png':
+						type = 'image/png'
+						break
+					case 'jpeg':
+					case 'jpg':
+						type = 'image/jpeg'
+						break
+					case 'bmp':
+						type = 'image/bmp'
+						break
+					case 'webp':
+						type = 'image/webp'
+						break
+					default:
+						type = 'image/jpeg'
+						break
+				}
+			}
+
 			images.push(
 				new ReactNativeFile({
 					uri: imageResult.uri,
-					type: imageResult.type,
+					type,
 					name: 'picture',
 				})
 			)
@@ -31,8 +58,6 @@ export class UploadField extends React.Component<FieldProps<any>> {
 			setFieldValue(name, images)
 		}
 	}
-
-	upload = async () => {}
 
 	render() {
 		const {
