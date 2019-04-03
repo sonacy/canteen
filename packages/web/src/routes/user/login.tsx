@@ -40,12 +40,8 @@ const Login = ({ form, history, location }: IProps) => {
 											})
 										} else {
 											await client.resetStore()
-											const { next } = location.state
-											if (next) {
-												history.push(next)
-											} else {
-												history.push('/')
-											}
+											const next = location.state ? location.state.next : '/'
+											history.push(next)
 										}
 									}
 								})

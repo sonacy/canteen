@@ -10,7 +10,7 @@ const HtmlPlugin = require('html-webpack-plugin')
 const pkg = require(resolve(__dirname, '../package.json'))
 const webpack = require('webpack')
 const Dotenv = require('dotenv-webpack')
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 module.exports = {
   devtool: isDev ? 'cheap-module-eval-source-map' : 'source-map',
@@ -157,7 +157,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new HardSourceWebpackPlugin(),
+    // new HardSourceWebpackPlugin(),
     new CheckerPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',

@@ -34,7 +34,6 @@ const main = async () => {
 
 	const schema = await createSchema()
 	const server = new ApolloServer({
-		playground: true,
 		schema,
 		context: ({ req, res }: any) => ({ req, res }),
 	})

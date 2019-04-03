@@ -11,7 +11,6 @@ module.exports = merge(base, {
     path: resolve(__dirname, '../dist/'),
     filename: '[name].[chunkhash:8].js',
     chunkFilename: '[name].[chunkhash:8].js',
-    publicPath: '/dist/',
   },
   optimization: {
     runtimeChunk: true,

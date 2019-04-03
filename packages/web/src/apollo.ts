@@ -4,7 +4,7 @@ import { createUploadLink } from 'apollo-upload-client'
 
 export const client = new ApolloClient({
 	link: createUploadLink({
-		uri: process.env.REACT_APP_SERVER_URL,
+		uri: `${process.env.REACT_APP_SERVER_URL}/graphql`,
 		credentials: 'include',
 	}),
 	cache: new InMemoryCache(),

@@ -1,6 +1,6 @@
 import React from 'react'
 import { ShopListController } from '@canteen/common'
-import { List, Button, Card, Spin, Empty, Icon } from 'antd'
+import { Button, Spin, Empty, Icon } from 'antd'
 import defaultImg from '../../assets/img/shop.jpg'
 import { RouteComponentProps } from 'react-router'
 import classes from './list.styl'
@@ -8,7 +8,7 @@ import classes from './list.styl'
 const ShopListing = ({ history }: RouteComponentProps) => {
 	return (
 		<ShopListController variables={{ pageNo: 1, pageSize: 10 }}>
-			{({ data, error, loading, fetchMore }) => {
+			{({ data, loading }) => {
 				if (loading)
 					return (
 						<Spin
