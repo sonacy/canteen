@@ -67,3 +67,5 @@ dist
 packages/server/images
 
 .expo
+
+.env*

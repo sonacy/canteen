@@ -1,0 +1,6 @@
+*
+!./package.json
+!./packages/server/package.json
+!./packages/server/dist
+!./packages/server/.env.production
+!./ormconfig.json

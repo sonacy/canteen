@@ -1,10 +1,10 @@
 import { ApolloError } from 'apollo-server-core'
 import bcrypt from 'bcryptjs'
-import { User } from 'src/entity/User'
-import { redis } from 'src/redis'
-import { IMyContext } from 'src/types/MyContext'
-import { FORGOT_PASSWORD_PREFIX } from 'src/utils/constants'
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
+import { User } from '../../entity/User'
+import { redis } from '../../redis'
+import { IMyContext } from '../../types/MyContext'
+import { FORGOT_PASSWORD_PREFIX } from '../../utils/constants'
 
 @Resolver()
 export default class ChangePassword {

@@ -1,9 +1,9 @@
-import { User } from 'src/entity/User'
-import { redis } from 'src/redis'
-import { FORGOT_PASSWORD_PREFIX, FRONTEND_HOST } from 'src/utils/constants'
-import { sendEmail } from 'src/utils/sendEmail'
 import { Arg, Mutation, Resolver } from 'type-graphql'
 import { v4 } from 'uuid'
+import { User } from '../../entity/User'
+import { redis } from '../../redis'
+import { FORGOT_PASSWORD_PREFIX } from '../../utils/constants'
+import { sendEmail } from '../../utils/sendEmail'
 
 @Resolver()
 export default class ForgotPassword {
@@ -21,7 +21,7 @@ export default class ForgotPassword {
 		await redis.set(FORGOT_PASSWORD_PREFIX + token, user.id, 'ex', 60 * 60 * 24)
 		await sendEmail(
 			user.email,
-			`${FRONTEND_HOST}/user/change-password/${token}`,
+			`${process.env.FRONTEND_HOST}/user/change-password/${token}`,
 			'Change Password'
 		)
 		return true

@@ -1,8 +1,8 @@
 import { ApolloError } from 'apollo-server-core'
 import bcrypt from 'bcryptjs'
-import { User } from 'src/entity/User'
-import { IMyContext } from 'src/types/MyContext'
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql'
+import { User } from '../../entity/User'
+import { IMyContext } from '../../types/MyContext'
 
 @Resolver()
 export default class LoginResolver {

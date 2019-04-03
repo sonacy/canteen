@@ -9,6 +9,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlPlugin = require('html-webpack-plugin')
 const pkg = require(resolve(__dirname, '../package.json'))
 const webpack = require('webpack')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   devtool: isDev ? 'cheap-module-eval-source-map' : 'source-map',
@@ -166,5 +167,8 @@ module.exports = {
       minify: true,
     }),
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn|en/),
+    new Dotenv({
+      path: `../.env.${process.env.NODE_ENV}`
+    })
   ],
 }

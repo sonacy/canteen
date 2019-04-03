@@ -1,7 +1,7 @@
 import { createWriteStream } from 'fs'
-import { IUpload } from 'src/types/Upload'
 import { Stream } from 'stream'
 import { v4 } from 'uuid'
+import { IUpload } from '../../types/Upload'
 
 const writeFile = (stream: Stream, filename: string): Promise<string> => {
 	return new Promise((resolve, reject) => {

@@ -1,7 +1,7 @@
-import { User } from 'src/entity/User'
-import { redis } from 'src/redis'
-import { CONFIRM_USER_PREFIX } from 'src/utils/constants'
 import { Arg, Mutation, Resolver } from 'type-graphql'
+import { User } from '../../entity/User'
+import { redis } from '../../redis'
+import { CONFIRM_USER_PREFIX } from '../../utils/constants'
 
 @Resolver()
 export default class ConfirmUser {

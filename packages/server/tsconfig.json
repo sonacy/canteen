@@ -21,8 +21,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "baseUrl": ".",
-    "rootDir": "src"
+    "types": ["node", "jest"]
   },
   "exclude": ["node_modules"],
   "include": ["./src/**/*.tsx", "./src/**/*.ts"],

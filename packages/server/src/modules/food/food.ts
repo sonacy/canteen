@@ -1,9 +1,9 @@
 import { ApolloError } from 'apollo-server-core'
 import { GraphQLUpload } from 'graphql-upload'
-import { Food } from 'src/entity/Food'
-import { Shop } from 'src/entity/Shop'
-import { IUpload } from 'src/types/Upload'
 import { Arg, Authorized, Mutation, Query, Resolver } from 'type-graphql'
+import { Food } from '../../entity/Food'
+import { Shop } from '../../entity/Shop'
+import { IUpload } from '../../types/Upload'
 import { processUpload } from '../shared/processUpload'
 
 @Resolver()
