@@ -1,6 +1,5 @@
 import fetch from 'node-fetch'
 import { URLSearchParams } from 'url'
-import { SENDCLOUD_FROM, SENDCLOUD_KEY, SENDCLOUD_USER } from './constants'
 
 export const sendEmail = async (
 	to: string,
@@ -9,9 +8,9 @@ export const sendEmail = async (
 ) => {
 	const body = new URLSearchParams()
 
-	body.append('apiUser', SENDCLOUD_USER)
-	body.append('apiKey', SENDCLOUD_KEY)
-	body.append('from', SENDCLOUD_FROM)
+	body.append('apiUser', process.env.SENDCLOUD_USER || '')
+	body.append('apiKey', process.env.SENDCLOUD_KEY || '')
+	body.append('from', process.env.SENDCLOUD_FROM || '')
 	body.append('to', to)
 	body.append('subject', subject)
 	body.append(
