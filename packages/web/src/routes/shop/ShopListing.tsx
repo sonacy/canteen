@@ -48,9 +48,7 @@ const ShopListing = ({ history }: RouteComponentProps) => {
 											height={200}
 											src={
 												shop.pics && shop.pics.length > 0
-													? `${process.env.REACT_APP_SERVER_URL}/images/${
-															shop.pics[0]
-													  }`
+													? `${process.env.QINIU_IMAGE_CDN}/${shop.pics[0]}`
 													: defaultImg
 											}
 										/>

@@ -1,9 +1,12 @@
 import { createWriteStream } from 'fs'
-import { Stream } from 'stream'
 import { v4 } from 'uuid'
 import { IUpload } from '../../types/Upload'
+import { streamUpload } from '../../utils/qiniuUpload'
 
-const writeFile = (stream: Stream, filename: string): Promise<string> => {
+export const writeFile = (
+	stream: NodeJS.ReadableStream,
+	filename: string
+): Promise<string> => {
 	return new Promise((resolve, reject) => {
 		stream
 			.pipe(createWriteStream(`images/${filename}`))
@@ -19,6 +22,7 @@ export const processUpload = async (file: Promise<IUpload>) => {
 
 	const extension = mimetype.split('/')[1]
 	const filename = `${v4()}.${extension}`
-
-	return writeFile(createReadStream(), filename)
+	const key = await streamUpload(filename, createReadStream())
+	return key
+	// return writeFile(createReadStream(), filename)
 }

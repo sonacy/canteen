@@ -62,12 +62,10 @@ const ShopDetail = ({
 										: 'center',
 							}}
 						>
-							{pics ? (
+							{pics && pics.length > 0 ? (
 								pics.map(url => (
 									<div className={classes.pic} key={url}>
-										<img
-											src={`${process.env.REACT_APP_SERVER_URL}/images/${url}`}
-										/>
+										<img src={`${process.env.QINIU_IMAGE_CDN}/${url}`} />
 									</div>
 								))
 							) : (
@@ -144,8 +142,8 @@ const ShopDetail = ({
 														width={200}
 														height={180}
 														src={
-															food.pics
-																? `${process.env.REACT_APP_SERVER_URL}/images/${
+															food.pics && food.pics.length > 0
+																? `${process.env.QINIU_IMAGE_CDN}/${
 																		food.pics[food.pics.length - 1]
 																  }`
 																: defaultImg

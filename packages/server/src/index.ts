@@ -71,8 +71,6 @@ const main = async () => {
 		})
 	)
 
-	app.use('/images', Express.static('images'))
-
 	server.applyMiddleware({ app, cors: false })
 
 	const port = process.env.PORT || '4000'
