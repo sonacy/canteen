@@ -12,7 +12,7 @@ export const uploadFile = (
 	return new Promise((resolve, reject) => {
 		const stream = cloudinary.uploader.upload_stream(
 			(result: any) => {
-				resolve(result.url)
+				resolve(result.secure_url)
 			},
 			{
 				folder: 'canteen',

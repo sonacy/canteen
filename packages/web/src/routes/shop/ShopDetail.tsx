@@ -63,8 +63,8 @@ const ShopDetail = ({
 							}}
 						>
 							{pics && pics.length > 0 ? (
-								pics.map(url => (
-									<div className={classes.pic} key={url}>
+								pics.map((url, index) => (
+									<div className={classes.pic} key={index}>
 										<img src={url} />
 									</div>
 								))

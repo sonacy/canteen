@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
-import Main from './main'
-import About from './about'
 import Register from './user/register'
 import TextPage from './text'
 import Login from './user/login'
@@ -43,8 +41,6 @@ export default class Routes extends PureComponent {
 					exact={true}
 					component={ChangePassword}
 				/>
-				<Route path="/main" exact={true} component={Main} />
-				<Route path="/about" exact={true} component={About} />
 				<Route path="/m" component={TextPage} />
 				<AuthRoute path="/shop/list" exact={true} component={ShopListing} />
 				<AuthRoute path="/shop/create" exact={true} component={ShopCreate} />
