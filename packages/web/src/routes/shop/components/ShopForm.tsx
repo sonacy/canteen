@@ -4,6 +4,7 @@ import { FormComponentProps } from 'antd/lib/form'
 import FormInput from 'components/form/FormInput'
 import { DropzoneField } from 'components/form/DropZone'
 import FormHidden from 'components/form/FormHidden'
+import { Spinner } from 'components/loading'
 
 interface IProps extends FormComponentProps {
 	shop?: {
@@ -14,9 +15,10 @@ interface IProps extends FormComponentProps {
 	}
 	submit: (values: any) => Promise<any>
 	onFinish: () => void
+	loading: boolean
 }
 
-const ShopForm = ({ form, shop, submit, onFinish }: IProps) => {
+const ShopForm = ({ form, shop, submit, onFinish, loading }: IProps) => {
 	const { validateFields, getFieldValue, setFields } = form
 
 	return (
@@ -67,6 +69,7 @@ const ShopForm = ({ form, shop, submit, onFinish }: IProps) => {
 				</Button>,
 			]}
 		>
+			<Spinner loading={loading} />
 			<Form>
 				{shop && <FormHidden field="id" initialValue={shop.id} form={form} />}
 				<FormInput

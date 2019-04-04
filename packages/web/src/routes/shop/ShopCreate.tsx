@@ -32,8 +32,9 @@ const ShopCreate = ({ history }: RouteComponentProps) => {
 				}
 			}}
 		>
-			{({ submit }) => (
+			{({ submit, loading }) => (
 				<ShopForm
+					loading={!!loading}
 					submit={submit}
 					onFinish={() => {
 						history.push('/shop/list')

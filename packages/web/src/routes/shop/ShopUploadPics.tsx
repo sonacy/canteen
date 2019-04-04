@@ -10,8 +10,9 @@ const ShopUploadPics = ({
 	const id = match.params.id
 	return (
 		<ShopPicsUploadController>
-			{({ submit }) => (
+			{({ submit, loading }) => (
 				<UploadPicsForm
+					loading={!!loading}
 					id={id}
 					submit={submit}
 					onFinish={() => {

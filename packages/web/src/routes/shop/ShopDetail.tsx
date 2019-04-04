@@ -3,7 +3,7 @@ import classes from './detail.styl'
 import { ShopDetailController } from '@canteen/common'
 import { RouteComponentProps } from 'react-router'
 import { Card, Button, Icon, Spin, Empty } from 'antd'
-import defaultImg from '../../assets/img/food.png'
+import { defaultFoodImg } from 'utils/contants'
 
 const ShopDetail = ({
 	match,
@@ -65,7 +65,7 @@ const ShopDetail = ({
 							{pics && pics.length > 0 ? (
 								pics.map(url => (
 									<div className={classes.pic} key={url}>
-										<img src={`${process.env.QINIU_IMAGE_CDN}/${url}`} />
+										<img src={url} />
 									</div>
 								))
 							) : (
@@ -143,10 +143,8 @@ const ShopDetail = ({
 														height={180}
 														src={
 															food.pics && food.pics.length > 0
-																? `${process.env.QINIU_IMAGE_CDN}/${
-																		food.pics[food.pics.length - 1]
-																  }`
-																: defaultImg
+																? food.pics[food.pics.length - 1]
+																: defaultFoodImg
 														}
 													/>
 												}

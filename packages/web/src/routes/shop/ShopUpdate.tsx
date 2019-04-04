@@ -6,8 +6,9 @@ import ShopForm from './components/ShopForm'
 const ShopUpdate = ({ history, location }: RouteComponentProps) => {
 	return (
 		<ShopUpdateController>
-			{({ submit }) => (
+			{({ submit, loading }) => (
 				<ShopForm
+					loading={!!loading}
 					shop={location.state}
 					submit={submit}
 					onFinish={() => {

@@ -34,8 +34,9 @@ const FoodCreate = ({ history, location }: RouteComponentProps) => {
 				}
 			}}
 		>
-			{({ submit }) => (
+			{({ submit, loading }) => (
 				<FoodForm
+					loading={!!loading}
 					shopId={shopId}
 					submit={submit}
 					onFinish={() => {

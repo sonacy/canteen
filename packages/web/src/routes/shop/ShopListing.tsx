@@ -1,9 +1,9 @@
 import React from 'react'
 import { ShopListController } from '@canteen/common'
 import { Button, Spin, Empty, Icon } from 'antd'
-import defaultImg from '../../assets/img/shop.jpg'
 import { RouteComponentProps } from 'react-router'
 import classes from './list.styl'
+import { defaultShopImg } from 'utils/contants'
 
 const ShopListing = ({ history }: RouteComponentProps) => {
 	return (
@@ -48,8 +48,8 @@ const ShopListing = ({ history }: RouteComponentProps) => {
 											height={200}
 											src={
 												shop.pics && shop.pics.length > 0
-													? `${process.env.QINIU_IMAGE_CDN}/${shop.pics[0]}`
-													: defaultImg
+													? shop.pics[0]
+													: defaultShopImg
 											}
 										/>
 									</div>

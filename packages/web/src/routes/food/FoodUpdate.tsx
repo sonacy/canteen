@@ -8,8 +8,9 @@ const FoodUpdate = ({ history, location }: RouteComponentProps) => {
 	const food = location.state.food
 	return (
 		<FoodUpdateController>
-			{({ submit }) => (
+			{({ submit, loading }) => (
 				<FoodForm
+					loading={!!loading}
 					food={food}
 					shopId={shopId}
 					submit={submit}

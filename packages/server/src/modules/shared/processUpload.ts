@@ -1,7 +1,6 @@
 import { createWriteStream } from 'fs'
-import { v4 } from 'uuid'
 import { IUpload } from '../../types/Upload'
-import { streamUpload } from '../../utils/qiniuUpload'
+import { uploadFile } from '../../utils/cloudinaryUpload'
 
 export const writeFile = (
 	stream: NodeJS.ReadableStream,
@@ -18,11 +17,9 @@ export const writeFile = (
 }
 
 export const processUpload = async (file: Promise<IUpload>) => {
-	const { mimetype, createReadStream } = await file
+	const { createReadStream } = await file
 
-	const extension = mimetype.split('/')[1]
-	const filename = `${v4()}.${extension}`
-	const key = await streamUpload(filename, createReadStream())
+	const key = await uploadFile(createReadStream())
+
 	return key
-	// return writeFile(createReadStream(), filename)
 }

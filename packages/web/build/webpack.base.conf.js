@@ -28,7 +28,8 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.d.ts'],
     alias: {
       components: resolve(__dirname, '../src/components'),
-      routes: resolve(__dirname, '../src/routes')
+      routes: resolve(__dirname, '../src/routes'),
+      utils: resolve(__dirname, '../src/utils'),
     }
   },
   module: {

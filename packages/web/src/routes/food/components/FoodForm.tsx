@@ -5,6 +5,7 @@ import FormInput from 'components/form/FormInput'
 import { DropzoneField } from 'components/form/DropZone'
 import FormHidden from 'components/form/FormHidden'
 import FormNumber from 'components/form/FormNumber'
+import { Spinner } from 'components/loading'
 
 interface IProps extends FormComponentProps {
 	food?: {
@@ -16,9 +17,17 @@ interface IProps extends FormComponentProps {
 	submit: (values: any) => Promise<any>
 	onFinish: () => void
 	shopId: string
+	loading: boolean
 }
 
-const FoodForm = ({ form, food, submit, onFinish, shopId }: IProps) => {
+const FoodForm = ({
+	form,
+	food,
+	submit,
+	onFinish,
+	shopId,
+	loading,
+}: IProps) => {
 	const { validateFields, getFieldValue, setFields } = form
 
 	return (
@@ -69,6 +78,7 @@ const FoodForm = ({ form, food, submit, onFinish, shopId }: IProps) => {
 				</Button>,
 			]}
 		>
+			<Spinner loading={loading} />
 			<Form>
 				{food && <FormHidden field="id" initialValue={food.id} form={form} />}
 				<FormHidden field="shopId" initialValue={shopId} form={form} />

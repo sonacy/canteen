@@ -3,14 +3,16 @@ import { Card, Button, Form } from 'antd'
 import { FormComponentProps } from 'antd/lib/form'
 import { DropzoneField } from 'components/form/DropZone'
 import FormHidden from 'components/form/FormHidden'
+import { Spinner } from 'components/loading'
 
 interface IProps extends FormComponentProps {
 	id: string
 	submit: (values: any) => Promise<any>
 	onFinish: () => void
+	loading: boolean
 }
 
-const UploadPicsForm = ({ form, id, submit, onFinish }: IProps) => {
+const UploadPicsForm = ({ form, id, submit, onFinish, loading }: IProps) => {
 	const { validateFields, getFieldValue, setFields } = form
 
 	return (
@@ -61,6 +63,7 @@ const UploadPicsForm = ({ form, id, submit, onFinish }: IProps) => {
 				</Button>,
 			]}
 		>
+			<Spinner loading={loading} />
 			<Form>
 				<FormHidden field="id" initialValue={id} form={form} />
 				<DropzoneField form={form} field="pics" label="图片" />
