@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "build:server": "lerna run build --scope=@canteen/server",
-    "build:web": "lerna run build --scope={@canteen/common,@canteen/web}"
+    "build:web": "lerna run build --scope={@canteen/common,@canteen/web}",
+    "release:server": "./deploy-server.sh",
+    "release:web": "./deploy-web.sh"
   },
   "workspaces": [
     "packages/*"
