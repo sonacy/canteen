@@ -5,7 +5,8 @@
     "build:server": "lerna run build --scope=@canteen/server",
     "build:web": "lerna run build --scope={@canteen/common,@canteen/web}",
     "release:server": "./deploy-server.sh",
-    "release:web": "./deploy-web.sh"
+    "release:web": "./deploy-web.sh",
+    "new-version": "lerna version --conventional-commits --yes"
   },
   "workspaces": [
     "packages/*"
