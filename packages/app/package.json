@@ -1,6 +1,6 @@
 {
   "name": "@canteen/app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./index.js",
   "scripts": {
     "prestart": "node ./scripts/enable-rn-hooks.js",
@@ -10,7 +10,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@canteen/common": "1.0.0",
+    "@canteen/common": "^1.0.1",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
     "apollo-link-http": "^1.5.14",
@@ -29,7 +29,7 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
-    "@canteen/expo-yarn-workspaces": "1.0.0",
+    "@canteen/expo-yarn-workspaces": "^1.0.1",
     "@types/apollo-upload-client": "^8.1.1",
     "@types/expo": "^32.0.9",
     "@types/react": "^16.8.10",
