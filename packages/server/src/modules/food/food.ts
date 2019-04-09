@@ -1,10 +1,12 @@
 import { ApolloError } from 'apollo-server-core'
 import { GraphQLUpload } from 'graphql-upload'
 import { Arg, Authorized, Mutation, Query, Resolver } from 'type-graphql'
+import { LessThan, MoreThan } from 'typeorm'
 import { Food } from '../../entity/Food'
 import { Shop } from '../../entity/Shop'
 import { IUpload } from '../../types/Upload'
 import { processUpload } from '../shared/processUpload'
+import FoodPagination from './foodPagination'
 
 @Resolver()
 export default class FoodResolver {
@@ -98,24 +100,79 @@ export default class FoodResolver {
 		return true
 	}
 
-	@Query(() => [Food])
+	@Query(() => FoodPagination)
 	@Authorized()
 	async pageFoods(
 		@Arg('shopId') shopId: string,
 		@Arg('pageNo') pageNo: number,
 		@Arg('pageSize') pageSize: number
-	) {
+	): Promise<{
+		data: Food[]
+		total: number
+	}> {
 		const shop = await Shop.findOne(shopId)
 		if (!shop) {
 			throw new ApolloError('商店已不存在!')
 		}
 		const data = await Food.find({
 			where: { shop },
+			order: {
+				updatedTime: 'DESC',
+			},
 			take: pageSize,
 			skip: (pageNo - 1) * pageSize,
 		})
+		const total = await Shop.count()
 
-		return data
+		return {
+			data,
+			total,
+		}
+	}
+
+	@Query(() => FoodPagination)
+	@Authorized()
+	async cursorFoods(
+		@Arg('shopId') shopId: string,
+		@Arg('size') size: number,
+		@Arg('cursor', { nullable: true }) cursor?: string
+	): Promise<{
+		data: Food[]
+		hasMore: boolean
+	}> {
+		const shop = await Shop.findOne(shopId)
+		if (!shop) {
+			throw new ApolloError('商店已不存在!')
+		}
+
+		let cursorFood = null
+		if (cursor) {
+			cursorFood = await Food.findOne(cursor)
+		}
+		const data = await Food.find({
+			where: {
+				shop,
+				updatedTime: MoreThan(cursorFood ? cursorFood.createdTime : 0),
+			},
+			take: size,
+			order: {
+				updatedTime: 'DESC',
+			},
+		})
+		let hasMore = false
+		if (data.length > 0) {
+			const more = await Food.find({
+				where: {
+					updatedTime: LessThan(data[data.length - 1].updatedTime),
+				},
+			})
+
+			hasMore = more.length > 0
+		}
+		return {
+			data,
+			hasMore,
+		}
 	}
 
 	@Query(() => Food)

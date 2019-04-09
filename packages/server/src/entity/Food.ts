@@ -1,20 +1,11 @@
-import { Field, ID, ObjectType } from 'type-graphql'
-import {
-	BaseEntity,
-	Column,
-	Entity,
-	ManyToOne,
-	PrimaryGeneratedColumn,
-} from 'typeorm'
+import { Field, ObjectType } from 'type-graphql'
+import { Column, Entity, ManyToOne } from 'typeorm'
+import { Base } from '../shared/Base'
 import { Shop } from './Shop'
 
 @ObjectType()
 @Entity()
-export class Food extends BaseEntity {
-	@Field(() => ID)
-	@PrimaryGeneratedColumn()
-	id: string
-
+export class Food extends Base {
 	@Field()
 	@Column()
 	name: string

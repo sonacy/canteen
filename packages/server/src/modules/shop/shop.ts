@@ -1,9 +1,11 @@
 import { ApolloError } from 'apollo-server-core'
 import { GraphQLUpload } from 'graphql-upload'
 import { Arg, Authorized, Mutation, Query, Resolver } from 'type-graphql'
+import { LessThan, MoreThan } from 'typeorm'
 import { Shop } from '../../entity/Shop'
 import { IUpload } from '../../types/Upload'
 import { processUpload } from '../shared/processUpload'
+import ShopPagination from './shopPagination'
 
 @Resolver()
 export default class ShopResolver {
@@ -90,18 +92,66 @@ export default class ShopResolver {
 		return true
 	}
 
-	@Query(() => [Shop])
+	@Query(() => ShopPagination)
 	@Authorized()
 	async pageShop(
 		@Arg('pageNo') pageNo: number,
 		@Arg('pageSize') pageSize: number
-	) {
+	): Promise<{
+		data: Shop[]
+		total: number
+	}> {
 		const data = await Shop.find({
+			order: {
+				updatedTime: 'DESC',
+			},
 			take: pageSize,
 			skip: (pageNo - 1) * pageSize,
 		})
+		const total = await Shop.count()
 
-		return data
+		return {
+			data,
+			total,
+		}
+	}
+
+	@Query(() => ShopPagination)
+	@Authorized()
+	async cursorShop(
+		@Arg('size') size: number,
+		@Arg('cursor', { nullable: true }) cursor?: string
+	): Promise<{
+		data: Shop[]
+		hasMore: boolean
+	}> {
+		let cursorShop = null
+		if (cursor) {
+			cursorShop = await Shop.findOne(cursor)
+		}
+		const data = await Shop.find({
+			where: {
+				updatedTime: MoreThan(cursorShop ? cursorShop.createdTime : 0),
+			},
+			take: size,
+			order: {
+				updatedTime: 'DESC',
+			},
+		})
+		let hasMore = false
+		if (data.length > 0) {
+			const more = await Shop.find({
+				where: {
+					updatedTime: LessThan(data[data.length - 1].updatedTime),
+				},
+			})
+
+			hasMore = more.length > 0
+		}
+		return {
+			data,
+			hasMore,
+		}
 	}
 
 	@Query(() => Shop)
