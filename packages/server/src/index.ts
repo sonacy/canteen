@@ -5,7 +5,6 @@ import dotenv from 'dotenv'
 import Express from 'express'
 import session from 'express-session'
 import http from 'http'
-import https from 'https'
 import 'reflect-metadata'
 import { createConnection, getConnectionOptions } from 'typeorm'
 import { Food } from './entity/Food'
@@ -28,7 +27,7 @@ const main = async () => {
 					name: 'default',
 					database: 'canteen-server-ts-graphql',
 					entities: [User, Food, Shop],
-					synchronize: true,
+					synchronize: false,
 					logging: false,
 			  }
 			: connectionOptions
@@ -74,10 +73,7 @@ const main = async () => {
 	)
 
 	server.applyMiddleware({ app, cors: false })
-	const httpServer =
-		process.env.NODE_ENV === 'production'
-			? https.createServer(app)
-			: http.createServer(app)
+	const httpServer = http.createServer(app)
 	server.installSubscriptionHandlers(httpServer)
 
 	const port = process.env.PORT || '4000'

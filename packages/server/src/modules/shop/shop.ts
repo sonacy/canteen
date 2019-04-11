@@ -12,9 +12,9 @@ import {
 	Subscription,
 } from 'type-graphql'
 import { LessThan, MoreThan } from 'typeorm'
-import { SHOP_ADD_SUBSCRIPTION } from 'utils/constants'
 import { Shop } from '../../entity/Shop'
 import { IUpload } from '../../types/Upload'
+import { SHOP_ADD_SUBSCRIPTION } from '../../utils/constants'
 import { processUpload } from '../shared/processUpload'
 import ShopPagination from './shopPagination'
 
