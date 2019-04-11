@@ -3,7 +3,7 @@ import { FieldProps } from 'formik'
 import { Image, Icon } from 'react-native-elements'
 import { ImagePicker, Permissions } from 'expo'
 import { ReactNativeFile } from 'apollo-upload-client'
-import { View, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 
 export class UploadField extends React.Component<FieldProps<any>> {
 	onPress = async () => {

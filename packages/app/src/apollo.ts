@@ -4,7 +4,7 @@ import { createUploadLink } from 'apollo-upload-client'
 
 export const client = new ApolloClient({
 	link: createUploadLink({
-		uri: 'http://30.22.108.11:4000/graphql',
+		uri: 'https://sonacy-canteen.herokuapp.com/graphql',
 		credentials: 'include',
 	}),
 	cache: new InMemoryCache(),

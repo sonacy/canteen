@@ -14,7 +14,7 @@ import ShopDetail from './views/shop/detail'
 import ShopCreate from './views/shop/create'
 import ShopUpdate from './views/shop/update'
 import { Icon } from 'react-native-elements'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, Alert } from 'react-native'
 import { LogoutController } from '@canteen/common'
 import ShopUpload from './views/shop/upload'
 import FoodCreate from './views/food/create'
@@ -64,15 +64,24 @@ const AppStack = createStackNavigator(
 				textAlign: 'center',
 				flex: 1,
 			},
+			headerBackTitle: ' ',
 			headerRight: (
 				<LogoutController>
 					{({ submit }) => {
 						return (
 							<TouchableOpacity
 								style={{ marginRight: 12 }}
-								onPress={async () => {
-									await submit({})
-									navigation.navigate('Login')
+								onPress={() => {
+									Alert.alert('登出', '确定退出账号登录吗?', [
+										{ text: '取消' },
+										{
+											text: '确定',
+											onPress: async () => {
+												await submit({})
+												navigation.navigate('Login')
+											},
+										},
+									])
 								}}>
 								<Icon type='antdesign' name='logout' color='#fff' size={18} />
 							</TouchableOpacity>

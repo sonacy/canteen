@@ -6,7 +6,7 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel'
 import styles, { sliderWidth, itemWidth } from './slide.style'
 import { Text, Icon, Divider, Image } from 'react-native-elements'
-import defaultImg from '../../assets/food.png'
+import { defaultFoodImg } from '../../utils/constants'
 
 export default class ShopDetail extends React.Component<NavigationScreenProps> {
 	static navigationOptions = {
@@ -54,7 +54,7 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
 													style={styles.image}
 													containerStyle={styles.slideInnerContainer}
 													source={{
-														uri: `http://30.22.108.11:4000/images/${item}`,
+														uri: item,
 													}}
 												/>
 											)
@@ -231,15 +231,12 @@ export default class ShopDetail extends React.Component<NavigationScreenProps> {
 														width: 148,
 														height: 96,
 													}}
-													source={
-														item.pics && item.pics.length > 0
-															? {
-																	uri: `http://30.22.108.11:4000/images/${
-																		item.pics[0]
-																	}`,
-															  }
-															: defaultImg
-													}
+													source={{
+														uri:
+															item.pics && item.pics.length > 0
+																? item.pics[0]
+																: defaultFoodImg,
+													}}
 												/>
 												<View
 													style={{

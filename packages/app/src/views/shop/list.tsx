@@ -1,10 +1,15 @@
 import React from 'react'
 import { ShopListController } from '@canteen/common'
-import { View, TouchableOpacity } from 'react-native'
+import {
+	View,
+	TouchableOpacity,
+	FlatList,
+	ActivityIndicator,
+} from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
-import { NavigationScreenProps, FlatList } from 'react-navigation'
-import defaultImg from '../../assets/shop.jpg'
+import { NavigationScreenProps } from 'react-navigation'
 import { Image, Text, Divider, Icon } from 'react-native-elements'
+import { defaultShopImg } from '../../utils/constants'
 
 class ShopList extends React.Component<NavigationScreenProps> {
 	static navigationOptions = ({ navigation }: NavigationScreenProps) => ({
@@ -23,13 +28,15 @@ class ShopList extends React.Component<NavigationScreenProps> {
 	render() {
 		return (
 			<ShopListController
-				variables={{ pageNo: 1, pageSize: 10 }}
+				variables={{ size: 10 }}
 				onAuthError={() => {
 					this.props.navigation.navigate('Login', {
 						next: 'ShopList',
 					})
 				}}>
-				{({ data, loading }) => {
+				{({ data, loading, fetchMore }) => {
+					if (!data || !data.cursorShop) return null
+
 					return (
 						<View
 							style={{
@@ -38,9 +45,54 @@ class ShopList extends React.Component<NavigationScreenProps> {
 							}}>
 							<Spinner visible={loading} size='large' />
 							<FlatList
+								ListFooterComponent={() => {
+									return (
+										<View
+											style={{
+												height: 32,
+												flex: 1,
+												justifyContent: 'center',
+												alignItems: 'center',
+											}}>
+											{data.cursorShop.hasMore ? (
+												<ActivityIndicator animating={true} />
+											) : (
+												<Text>没有更多数据</Text>
+											)}
+										</View>
+									)
+								}}
 								ItemSeparatorComponent={() => <Divider />}
 								keyExtractor={item => item.id}
-								data={data ? data.pageShop : []}
+								data={data ? data.cursorShop.data : []}
+								onEndReachedThreshold={0.1}
+								onEndReached={() => {
+									if (data.cursorShop.hasMore) {
+										const lastItem =
+											data.cursorShop.data[data.cursorShop.data.length - 1]
+										fetchMore({
+											variables: {
+												size: 10,
+												cursor: lastItem.id,
+											},
+											updateQuery: (pv, { fetchMoreResult }) => {
+												if (!fetchMoreResult) {
+													return pv
+												}
+												return {
+													cursorShop: {
+														__typename: fetchMoreResult.cursorShop.__typename,
+														data: [
+															...pv.cursorShop.data,
+															...fetchMoreResult.cursorShop.data,
+														],
+														hasMore: fetchMoreResult.cursorShop.hasMore,
+													},
+												}
+											},
+										})
+									}
+								}}
 								renderItem={({ item }) => {
 									return (
 										<TouchableOpacity
@@ -60,15 +112,12 @@ class ShopList extends React.Component<NavigationScreenProps> {
 													width: 60,
 													height: 60,
 												}}
-												source={
-													item.pics && item.pics.length > 0
-														? {
-																uri: `http://30.22.108.11:4000/images/${
-																	item.pics[0]
-																}`,
-														  }
-														: defaultImg
-												}
+												source={{
+													uri:
+														item.pics && item.pics.length > 0
+															? item.pics[0]
+															: defaultShopImg,
+												}}
 											/>
 											<View
 												style={{

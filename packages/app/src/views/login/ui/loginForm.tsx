@@ -37,6 +37,7 @@ const LoginForm = ({ submit, onFinish, loading, goToRegister }: IProps) => {
 				initialValues={{ name: '', password: '' }}
 				onSubmit={async (values, { setErrors }) => {
 					const data = await submit(values)
+
 					if (data.errors) {
 						const errors: any = {}
 						data.errors.forEach(x => {

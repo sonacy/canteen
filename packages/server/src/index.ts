@@ -26,7 +26,7 @@ const main = async () => {
 					name: 'default',
 					database: 'canteen-server-ts-graphql',
 					entities: [User, Food, Shop],
-					synchronize: false,
+					synchronize: true,
 					logging: false,
 			  }
 			: connectionOptions
