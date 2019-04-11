@@ -14,20 +14,24 @@ const ShopCreate = ({ history }: RouteComponentProps) => {
 				if (data && data.createShop) {
 					let shops = store.readQuery<PageShopQuery, PageShopQueryVariables>({
 						query: shopListQuery,
-						variables: { pageNo: 1, pageSize: 10 },
+						variables: { size: 5 },
 					})
-					if (shops && shops.pageShop.length > 0) {
-						shops.pageShop.push(data.createShop)
+					if (shops && shops.cursorShop.data.length > 0) {
+						shops.cursorShop.data.unshift(data.createShop)
 					} else {
 						shops = {
-							pageShop: [data.createShop],
+							cursorShop: {
+								__typename: 'ShopPagination',
+								data: [data.createShop],
+								hasMore: false,
+							},
 						}
 					}
 
 					store.writeQuery<PageShopQuery, PageShopQueryVariables>({
 						query: shopListQuery,
 						data: shops,
-						variables: { pageNo: 1, pageSize: 10 },
+						variables: { size: 5 },
 					})
 				}
 			}}

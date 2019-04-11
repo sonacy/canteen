@@ -152,7 +152,9 @@ export default class FoodResolver {
 		const data = await Food.find({
 			where: {
 				shop,
-				updatedTime: MoreThan(cursorFood ? cursorFood.createdTime : 0),
+				updatedTime: cursorFood
+					? LessThan(cursorFood.createdTime)
+					: MoreThan(0),
 			},
 			take: size,
 			order: {

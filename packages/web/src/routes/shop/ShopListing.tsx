@@ -1,14 +1,17 @@
 import React from 'react'
 import { ShopListController } from '@canteen/common'
+import { Waypoint } from 'react-waypoint'
 import { Button, Spin, Empty, Icon } from 'antd'
 import { RouteComponentProps } from 'react-router'
 import classes from './list.styl'
 import { defaultShopImg } from 'utils/contants'
 
 const ShopListing = ({ history }: RouteComponentProps) => {
+	const size = 5
+
 	return (
-		<ShopListController variables={{ pageNo: 1, pageSize: 10 }}>
-			{({ data, loading }) => {
+		<ShopListController variables={{ size }}>
+			{({ data, loading, fetchMore }) => {
 				if (loading)
 					return (
 						<Spin
@@ -33,8 +36,8 @@ const ShopListing = ({ history }: RouteComponentProps) => {
 								history.push('/shop/create')
 							}}
 						/>
-						{data && data.pageShop.length > 0 ? (
-							data.pageShop.map(shop => (
+						{data && data.cursorShop.data.length > 0 ? (
+							data.cursorShop.data.map((shop, index) => (
 								<div
 									key={shop.id}
 									className={classes.shopItem}
@@ -42,6 +45,34 @@ const ShopListing = ({ history }: RouteComponentProps) => {
 										history.push(`/shop/detail/${shop.id}`)
 									}}
 								>
+									{data.cursorShop.data.length - index === 1 && (
+										<Waypoint
+											onEnter={() => {
+												fetchMore({
+													variables: {
+														size,
+														cursor: shop.id,
+													},
+													updateQuery: (pv, { fetchMoreResult }) => {
+														if (!fetchMoreResult) {
+															return pv
+														}
+														return {
+															cursorShop: {
+																__typename:
+																	fetchMoreResult.cursorShop.__typename,
+																data: [
+																	...pv.cursorShop.data,
+																	...fetchMoreResult.cursorShop.data,
+																],
+																hasMore: fetchMoreResult.cursorShop.hasMore,
+															},
+														}
+													},
+												})
+											}}
+										/>
+									)}
 									<div className={classes.shopImg}>
 										<img
 											width={200}
@@ -68,6 +99,24 @@ const ShopListing = ({ history }: RouteComponentProps) => {
 							))
 						) : (
 							<Empty description="没有商户信息,请添加" />
+						)}
+						{data && data.cursorShop.data.length > 0 && (
+							<div
+								style={{
+									height: 64,
+									lineHeight: '64px',
+									textAlign: 'center',
+								}}
+							>
+								{data.cursorShop.hasMore ? (
+									<>
+										<span style={{ marginRight: 8 }}>加载中</span>
+										<Spin spinning={true} size="small" />
+									</>
+								) : (
+									<span>没有更多数据</span>
+								)}
+							</div>
 						)}
 					</div>
 				)

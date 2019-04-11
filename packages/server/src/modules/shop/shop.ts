@@ -131,7 +131,9 @@ export default class ShopResolver {
 		}
 		const data = await Shop.find({
 			where: {
-				updatedTime: MoreThan(cursorShop ? cursorShop.createdTime : 0),
+				updatedTime: cursorShop
+					? LessThan(cursorShop.createdTime)
+					: MoreThan(0),
 			},
 			take: size,
 			order: {

@@ -6,7 +6,7 @@
 // GraphQL query operation: PageShopQuery
 // ====================================================
 
-export interface PageShopQuery_pageShop {
+export interface PageShopQuery_cursorShop_data {
   __typename: "Shop";
   name: string;
   pics: string[] | null;
@@ -15,11 +15,17 @@ export interface PageShopQuery_pageShop {
   phone: string | null;
 }
 
+export interface PageShopQuery_cursorShop {
+  __typename: "ShopPagination";
+  data: PageShopQuery_cursorShop_data[];
+  hasMore: boolean;
+}
+
 export interface PageShopQuery {
-  pageShop: PageShopQuery_pageShop[];
+  cursorShop: PageShopQuery_cursorShop;
 }
 
 export interface PageShopQueryVariables {
-  pageSize: number;
-  pageNo: number;
+  size: number;
+  cursor?: string | null;
 }

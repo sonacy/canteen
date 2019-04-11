@@ -20,7 +20,8 @@
     "react-apollo": "^2.5.3",
     "react-dom": "^16.8.6",
     "react-dropzone": "^10.0.6",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "react-waypoint": "^9.0.1"
   },
   "devDependencies": {
     "@types/apollo-upload-client": "^8.1.1",

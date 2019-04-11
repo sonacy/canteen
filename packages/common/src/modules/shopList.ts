@@ -3,13 +3,16 @@ import { PageShopQuery, PageShopQueryVariables } from '../types/PageShopQuery'
 import { queryHOC } from './query'
 
 export const shopListQuery = gql`
-	query PageShopQuery($pageSize: Float!, $pageNo: Float!) {
-		pageShop(pageSize: $pageSize, pageNo: $pageNo) {
-			name
-			pics
-			id
-			address
-			phone
+	query PageShopQuery($size: Float!, $cursor: String) {
+		cursorShop(size: $size, cursor: $cursor) {
+			data {
+				name
+				pics
+				id
+				address
+				phone
+			}
+			hasMore
 		}
 	}
 `
