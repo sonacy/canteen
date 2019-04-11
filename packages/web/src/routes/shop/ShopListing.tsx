@@ -5,8 +5,13 @@ import { Button, Spin, Empty, Icon } from 'antd'
 import { RouteComponentProps } from 'react-router'
 import classes from './list.styl'
 import { defaultShopImg } from 'utils/contants'
+import { ShopAddedSubscription_shopAdded } from '@canteen/common/dist/types/ShopAddedSubscription'
 
-const ShopListing = ({ history }: RouteComponentProps) => {
+interface IProps extends RouteComponentProps {
+	addedShop?: ShopAddedSubscription_shopAdded
+}
+
+const ShopListing = ({ history, addedShop }: IProps) => {
 	const size = 5
 
 	return (
@@ -25,6 +30,18 @@ const ShopListing = ({ history }: RouteComponentProps) => {
 						/>
 					)
 
+				let shops: ShopAddedSubscription_shopAdded[] = []
+				if (data) {
+					if (addedShop) {
+						shops = [addedShop, ...data.cursorShop.data]
+					} else {
+						shops = [...data.cursorShop.data]
+					}
+				} else {
+					if (addedShop) {
+						shops = [addedShop]
+					}
+				}
 				return (
 					<div className={classes.shopListContainer}>
 						<Button
@@ -36,8 +53,8 @@ const ShopListing = ({ history }: RouteComponentProps) => {
 								history.push('/shop/create')
 							}}
 						/>
-						{data && data.cursorShop.data.length > 0 ? (
-							data.cursorShop.data.map((shop, index) => (
+						{shops.length > 0 ? (
+							shops.map((shop, index) => (
 								<div
 									key={shop.id}
 									className={classes.shopItem}
@@ -45,7 +62,7 @@ const ShopListing = ({ history }: RouteComponentProps) => {
 										history.push(`/shop/detail/${shop.id}`)
 									}}
 								>
-									{data.cursorShop.data.length - index === 1 && (
+									{shops.length - index === 1 && (
 										<Waypoint
 											onEnter={() => {
 												fetchMore({

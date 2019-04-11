@@ -1,7 +1,18 @@
 import { ApolloError } from 'apollo-server-core'
 import { GraphQLUpload } from 'graphql-upload'
-import { Arg, Authorized, Mutation, Query, Resolver } from 'type-graphql'
+import {
+	Arg,
+	Authorized,
+	Mutation,
+	PubSub,
+	PubSubEngine,
+	Query,
+	Resolver,
+	Root,
+	Subscription,
+} from 'type-graphql'
 import { LessThan, MoreThan } from 'typeorm'
+import { SHOP_ADD_SUBSCRIPTION } from 'utils/constants'
 import { Shop } from '../../entity/Shop'
 import { IUpload } from '../../types/Upload'
 import { processUpload } from '../shared/processUpload'
@@ -9,13 +20,21 @@ import ShopPagination from './shopPagination'
 
 @Resolver()
 export default class ShopResolver {
+	@Subscription(() => Shop, {
+		topics: SHOP_ADD_SUBSCRIPTION,
+	})
+	shopAdded(@Root() { shop }: { shop: Shop }) {
+		return shop
+	}
+
 	@Mutation(() => Shop)
 	@Authorized()
 	async createShop(
 		@Arg('name') name: string,
 		@Arg('address', { nullable: true }) address: string,
 		@Arg('phone', { nullable: true }) phone: string,
-		@Arg('pics', () => [GraphQLUpload]) files: Array<Promise<IUpload>>
+		@Arg('pics', () => [GraphQLUpload]) files: Array<Promise<IUpload>>,
+		@PubSub() pubSub: PubSubEngine
 	) {
 		const pics = await Promise.all(files.map(processUpload))
 
@@ -25,6 +44,7 @@ export default class ShopResolver {
 			phone,
 			pics,
 		}).save()
+		await pubSub.publish(SHOP_ADD_SUBSCRIPTION, { shop })
 		return shop
 	}
 

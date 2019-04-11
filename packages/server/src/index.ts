@@ -4,6 +4,8 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import Express from 'express'
 import session from 'express-session'
+import http from 'http'
+import https from 'https'
 import 'reflect-metadata'
 import { createConnection, getConnectionOptions } from 'typeorm'
 import { Food } from './entity/Food'
@@ -72,13 +74,23 @@ const main = async () => {
 	)
 
 	server.applyMiddleware({ app, cors: false })
+	const httpServer =
+		process.env.NODE_ENV === 'production'
+			? https.createServer(app)
+			: http.createServer(app)
+	server.installSubscriptionHandlers(httpServer)
 
 	const port = process.env.PORT || '4000'
 	const host = '0.0.0.0'
 
-	app.listen(parseInt(port, 10), host, () => {
+	httpServer.listen(parseInt(port, 10), host, () => {
 		console.log(
 			`🚀 Server ready at http://${host}:${port}${server.graphqlPath}`
+		)
+		console.log(
+			`🚀 Subscriptions ready at ws://${host}:${port}${
+				server.subscriptionsPath
+			}`
 		)
 	})
 }

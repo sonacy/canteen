@@ -13,6 +13,7 @@
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
     "apollo-link-http": "^1.5.14",
+    "apollo-link-ws": "^1.0.17",
     "apollo-upload-client": "^10.0.0",
     "graphql": "^14.2.0",
     "graphql-tag": "^2.10.1",
@@ -21,7 +22,8 @@
     "react-dom": "^16.8.6",
     "react-dropzone": "^10.0.6",
     "react-router-dom": "^5.0.0",
-    "react-waypoint": "^9.0.1"
+    "react-waypoint": "^9.0.1",
+    "subscriptions-transport-ws": "^0.9.16"
   },
   "devDependencies": {
     "@types/apollo-upload-client": "^8.1.1",
